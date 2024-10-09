@@ -1,0 +1,425 @@
+  <div id="sticky" class="stickyHidden">
+    <span id="sticky-title_block">
+
+      <div style="display: flex;justify-content: inherit;">
+        {%  if section.settings.stickyAtcEnableImage %}
+          {{ product.featured_image | img_url: "250x250" | img_tag | class: sticky-form_product-image }}
+          <span class="square-separator square-separator--subdued square-separator--image"></span>
+        {% endif %}
+      </div>
+      
+      <span class = "sticky-form_product-title">
+          {{product.title}}
+      </span>
+
+      <span class="square-separator square-separator--subdued"></span>
+
+      {% if product.has_only_default_variant == false %}
+        <span class = "sticky-form_variant-title">
+          {{product.selected_or_first_available_variant.title}}
+        </span>
+        <span class="square-separator square-separator--subdued"></span>
+      {% endif%}
+      
+      <span class = "sticky-form_price ">
+        <span>
+           {{product.selected_or_first_available_variant.price | money}} 
+        </span>
+        <span class = "sticky-form_old-price">
+          {{product.selected_or_first_available_variant.compare_at_price | money }}
+        </span>     
+      </span>
+    </span>
+    <button
+      type="button"
+      name="addSticky"
+      class="product-form__submit button btn-shake {% if section.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+      {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %} 
+    >
+        <span {% if product.selected_or_first_available_variant.available == false %}style="display:none"{% endif %}>
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-bag" class="svg-inline--fa fa-shopping-bag fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z"></path></svg>
+        </span>
+        {%- if product.selected_or_first_available_variant.available -%}
+          <span>{{ 'products.product.add_to_cart' | t }}</span>
+        {%- else -%}
+          <span>{{ 'products.product.sold_out' | t }}</span>
+        {%- endif -%}
+    </button>
+    {%- if section.settings.show_dynamic_checkout -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+  </div>
+
+  <style>
+    {{ section.settings.stickyFonttype | font_face }}
+    
+    #sticky{
+      padding: 10px 24px;
+      background:#fff;
+      position:fixed;
+      bottom:0;
+      left:0;         	
+      z-index:100;
+      cursor: pointer; 
+      box-shadow: 0 0 3px #0000001a;
+      width:100%;  
+      transition: opacity .25s ease-in-out,transform .25s ease-in-out,visibility .25s ease-in-out;
+      display:block;
+    }
+
+    #sticky *{
+      font-family: {{section.settings.stickyFonttype.family}}, {{section.settings.stickyFonttype.fallback_families}};
+    }
+    
+    .stickyHidden{
+      opacity: 0;
+      transform: translateY(100%);
+      visibility: hidden;
+    }
+    
+    #sticky-title_block{
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size:16px;
+      margin-bottom: 5px;
+      gap:15px;
+    }
+    
+    span#sticky-title_block > *:not(.square-separator)
+    {
+      flex: 1;
+    }
+    
+    @media screen and (min-width:600px)
+    {
+      #sticky{
+        display: flex;
+      }
+      #sticky-title_block{
+        width: 40%;
+        align-items: center;
+        justify-content: space-around;
+        margin:0;
+        margin-left: 100px;
+      }
+      #sticky-title_block img{
+        display: block;
+        height:55px;
+        width:auto;
+      }   
+      #sticky > button{
+        width: 40%!important;
+      }
+    }
+
+    @media screen and (max-width:600px)
+    {
+      #sticky-title_block img, #sticky-title_block .square-separator--image{
+        display: none;
+      }   
+    }
+    
+    .sticky-form_product-title{
+      font-weight: bold;
+      font-size: {{section.settings.fontsizeTitle}}px;
+    }
+    
+    .sticky-form_variant-title{
+      color: #666;
+      font-size: {{section.settings.fontsizeVariant}}px;
+    }
+  
+    .sticky-form_price{
+      color: #d54d4d; 
+      text-align: right;
+      font-weight:bold;
+      font-size: {{section.settings.fontsizePrice}}px;
+    }
+  
+    .sticky-form_old-price{
+      color: #666;
+      text-decoration: line-through;
+      text-align: right; 
+    }
+
+    #sticky > button{
+      color: {{ section.settings.stickyAtcColor }};
+      background-color: {{ section.settings.stickyAtcBgColor }};
+      letter-spacing: 1.04px!important;
+      text-transform: uppercase!important;
+      font-size: {{section.settings.fontsizeButton}}px;
+      line-height: 20px!important;
+      margin:auto;
+      width: 100%;
+      border-radius:6px;     
+      height:55px;
+    }
+    
+    #sticky svg{
+      margin-left: 0.5em;
+      height: 1em;
+      margin-right: 1em;
+    }
+
+    {% if section.settings.stickyAtcEnableShaking %}
+      .btn-shake:enabled:hover {
+        animation: shakehover 1s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+      
+      .btn-shake:enabled {
+        animation: shake 6s cubic-bezier(.36,.07,.19,.97)  infinite;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+       
+      @keyframes shakehover {
+        10%, 90% {
+          transform: translate3d(-2px, 0, 0);
+        }
+        
+        20%, 80% {
+          transform: translate3d(4px, 0, 0);
+        }
+       
+        30%, 50%, 70% {
+          transform: translate3d(-5px, 0, 0);
+        }
+       
+        40%, 60% {
+          transform: translate3d(6px, 0, 0);
+        }
+      }
+      
+      @keyframes shake {
+        50%, 70% {
+          transform: translate3d(0, 0, 0);
+        }
+      
+        52%, 68% {
+          transform: translate3d(-2px, 0, 0);
+        }
+        
+        54%, 66% {
+          transform: translate3d(4px, 0, 0);
+        }
+       
+        56%, 60%, 64% {
+          transform: translate3d(-5px, 0, 0);
+        }
+       
+        58%, 62% {
+          transform: translate3d(6px, 0, 0);
+        }
+      }
+    {% endif %}
+
+    .square-separator{
+      opacity:0.5;
+      position: relative;
+      display: inline-block;
+      height: 4px;
+      width: 4px;
+      margin: auto 0;
+      flex-shrink: 0;
+      background: currentColor;
+      vertical-align: middle;
+    }
+  </style>  
+
+  <script defer>
+    let originalAtc = document.getElementsByName('add')[0];
+    let visible, visibleInitial={{section.settings.stickyAtcVisibleInitial}};
+
+    function isElementInViewport (el) {
+      var rect = el.getBoundingClientRect();
+      return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+          rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+      );
+	}       
+       
+    function onVisibilityChange(el, callback) {
+      var old_visible;
+      return function () {
+        visible = isElementInViewport(el);
+        if (visible != old_visible) {
+            old_visible = visible;
+            if (typeof callback == 'function') {
+                callback();
+            }
+        }
+        if (visible == true) {visibleInitial = true;}
+      }
+    }
+
+    var handler = onVisibilityChange(originalAtc, function() {
+      if(visible == false && visibleInitial == true){
+        document.getElementById('sticky').classList.remove('stickyHidden');
+      }
+      else{
+      	document.getElementById('sticky').classList.add('stickyHidden');
+      }
+      if ( {{ section.settings.stickyAtcDisableDesktop }} && window.innerWidth > 600) { document.getElementById('sticky').style.display = "none";}
+    });
+
+    // Non-jQuery
+    if (window.addEventListener) {
+        addEventListener('DOMContentLoaded', handler, false);
+        addEventListener('load', handler, false);
+        addEventListener('scroll', handler, false);
+        addEventListener('resize', handler, false);
+    } else if (window.attachEvent)  {
+        attachEvent('onDOMContentLoaded', handler); // Internet Explorer 9+ :(
+        attachEvent('onload', handler);
+        attachEvent('onscroll', handler);
+        attachEvent('onresize', handler);
+    }
+
+    document.querySelector('#sticky button').addEventListener('click',function(){
+      originalAtc.click();
+    });
+
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:load', () => {
+            var handler = onVisibilityChange(originalAtc, function() {
+              if(visible == false && visibleInitial == true){
+                document.getElementById('sticky').classList.remove('stickyHidden');
+              }
+              else{
+              	document.getElementById('sticky').classList.add('stickyHidden');
+              }
+              if ( {{ section.settings.stickyAtcDisableDesktop }} && window.innerWidth > 600) { document.getElementById('sticky').style.display = "none";}
+            });
+      });
+    }
+    
+    // On every variant change execute this line to easily reload the button. If no variantchange evtlistener exists, do it directly inside js files
+
+    document.body.addEventListener('change', function(event) {
+      if (event.target.matches('.swatch input[type="radio"]')) {
+        setTimeout(function() {
+          fetch(window.location.href)
+            .then(response => response.text())
+            .then(html => {
+              const doc = new DOMParser().parseFromString(html, 'text/html');
+              const content = doc.querySelector('#sticky').innerHTML;
+              document.querySelector('#sticky').innerHTML = content;
+    
+              document.querySelector('#sticky button').addEventListener('click',function(){
+                originalAtc.click();
+              });
+            })
+            .catch(error => console.log(error));
+        }, 200);
+      }
+    });
+  </script>
+
+{% schema %}
+{
+  "name": "Sticky Button Standard",
+  "limit": 1,
+  "settings": [
+    {
+    "type": "header",
+    "content": "Sticky ATC"
+    },
+    {
+      "type": "font_picker",
+      "id": "stickyFonttype",
+      "label": "Sticky Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "fontsizeTitle",
+      "label": "Font Size Title in px",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },   
+    {
+      "type": "range",
+      "id": "fontsizeVariant",
+      "label": "Font Size Variant in px",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },   
+    {
+      "type": "range",
+      "id": "fontsizePrice",
+      "label": "Font Size Price in px",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "fontsizeButton",
+      "label": "Font Size Button in px",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "checkbox",
+      "id": "stickyAtcDisableDesktop",
+      "default": true,
+      "label": "Hide on Desktop?"
+    }, 
+    {
+      "type": "checkbox",
+      "id": "stickyAtcEnableShaking",
+      "default": true,
+      "label": "Enable Shaking?"
+    }, 
+    {
+      "type": "checkbox",
+      "id": "stickyAtcEnableImage",
+      "default": true,
+      "label": "Enable Image?"
+    },
+    {
+      "type": "checkbox",
+      "id": "stickyAtcVisibleInitial",
+      "default": true,
+      "label": "Visible before first scroll to ATC button?"
+    },
+    {
+      "type": "color",
+      "label": "BG Color Button",
+      "id": "stickyAtcBgColor",
+      "default": "#2e2e2e"
+    },
+    {
+      "type": "color",
+      "label": "Font Color Button",
+      "id": "stickyAtcColor",
+      "default": "#fdfbf6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Atc Standard",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

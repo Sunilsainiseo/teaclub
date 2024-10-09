@@ -1,0 +1,30 @@
+<style>
+.top-bar ul.top-bar_left_badge {
+    margin-top: 13px !important;
+    padding-left: 0;
+    margin: 0;
+}  
+html:not(.w3_start) footer.footer .footer_credits {
+    opacity: 0 !important;
+}  
+ol li:has(ol)::marker {
+    font-size: 0;
+}
+.footer .footer-menu-wrap h3 {
+    margin: 0;
+    padding: 0 0 5px 0;
+    color: #dedede;
+    font-size: 16px;
+}
+@media only screen and (max-width: 798px) {
+    .footer .footer-menu-wrap h3 {
+        border-top: 1px solid #c7a55d;
+        margin-bottom: 5px;
+        padding: 10px 0 5px;
+    }
+    .footer .footer-menu-wrap h3 > span {
+        display: inline-block;
+        transition: transform 0.3s linear;        
+    }
+}
+</style>

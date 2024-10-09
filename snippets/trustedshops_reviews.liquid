@@ -1,0 +1,42 @@
+def get_trustedshops_reviews(product_id):
+    """
+    Fetches product reviews from Trusted Shops.
+
+    Args:
+        product_id: {{ selected_variant.sku }}
+
+    Returns:
+        A list of product reviews.
+    """
+
+    # Your Trusted Shops API key.
+    api_key = ""
+
+    # Your Trusted Shops shop ID.
+    shop_id = "X51031D0AF094350A1B20AEFD2C90FB66"
+
+    # Prodcut ID.
+    product_id = {{ selected_variant.sku }}
+
+    # Create an API request to Trusted Shops.
+    url = "https://api.trustedshops.com/v2/reviews/?product_id={}&api_key={}&shop_id={}".format(
+        product_id, api_key, shop_id
+    )
+
+    # Send the request.
+    response = requests.get(url)
+
+    # Decode the response.
+    reviews = response.json()
+
+    return reviews
+
+
+# Fetch the product reviews.
+reviews = get_trustedshops_reviews(product_id)
+
+# Save the product reviews in the metafields.
+product.metafields.trustedshops_reviews = reviews
+
+# Save the product.
+product.save()

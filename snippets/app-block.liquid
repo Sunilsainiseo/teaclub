@@ -1,0 +1,23 @@
+{% if canonical_url contains '/pages/teaclub-newsletter' %}
+    <script src="https://cdn.shopify.com/extensions/c7aed416-1f3d-4863-bbe9-b1435bf8107c/omnisend-email-marketing-sms-24/assets/omnisend-in-shop.js"></script>
+{% else %}
+    <script type="lazyload_int" data-src="https://cdn.shopify.com/extensions/c7aed416-1f3d-4863-bbe9-b1435bf8107c/omnisend-email-marketing-sms-24/assets/omnisend-in-shop.js"></script>
+{% endif %}
+<script type="lazyload_ext">
+	setTimeout(function() {
+		jQuery("img[data-zoom-src]").each(function() {
+			var zoomSrc = jQuery(this).data('zoom-src');
+			jQuery(this).wrap('<span class="zoom-container"></span>').css('display', 'block').parent().zoom({
+				url: zoomSrc,
+				touch: false,
+				magnify: 1
+			});
+		});
+	});
+</script>
+{% render 'analyzify-ga4-ads-tracking' %}
+<!-- BEGIN app block: shopify://apps/pandectes-gdpr-compliance/blocks/banner/58c0baa2-6cc1-480c-9ea6-38d6d559556a -->
+  <script type="lazyload_int" data-src="https://cdn.shopify.com/extensions/ed6f5bd8-d8d4-459d-a15d-5b430dd0aa89/pandectes-gdpr-compliance-78/assets/pandectes-core.js"></script>
+
+
+<!-- END app app block -->

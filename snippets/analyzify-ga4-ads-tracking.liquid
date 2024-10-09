@@ -1,0 +1,1044 @@
+<!-- BEGIN app block: shopify://apps/analyzify-ga4-ads-tracking/blocks/app-embed/69637cfd-dd6f-4511-aa97-7037cfb5515c -->
+
+<!-- BEGIN app snippet: analyzify-settings -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    window.analyzify = window.analyzify || [];
+    window.analyzify = {
+      properties:{
+        GTM:{
+          status: ("true" == "true"),
+          id: "GTM-T4JHVST",
+        },
+        GADS: {
+          id: "AW-945901515",
+          feed_region: "DE",
+          product_id_format: "variant_id_",
+          tracking: ("active" == "active" && "AW-945901515" != ""),
+          remarketing: ("active" == "active"),
+          conversions: {
+            view_item:{
+              status: "",
+              value: "r3dyCNjK7IMYEMufhcMD",
+            },
+            add_to_cart:{
+              status: "",
+              value: "7f9NCNXK7IMYEMufhcMD",
+            },
+            view_cart:{
+              status: "",
+              value: "",
+            },
+            begin_checkout:{
+              status: "",
+              value: "zIJ5CJOO0IgZEMufhcMD",
+            },
+          }
+        },
+        GA4:{
+          tracking: ("active" == "active" && "G-BZ2MWMSL4D" != "null" && "G-BZ2MWMSL4D" != ""),
+          id: "G-BZ2MWMSL4D"
+        },
+        X:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id:"",
+          events:{
+            page_view: "",
+            add_to_cart: "",
+            begin_checkout: "",
+            search: ""
+          }
+        },
+        BING:{
+          tracking: ("active" == 'active' && "121000915" != 'null' && "121000915" != ""),
+          id: "121000915"
+        },
+        FACEBOOK:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+        PINTEREST:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+        CRITEO:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+        CLARITY:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+        HOTJAR:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+        KLAVIYO:{
+          tracking: ("not_active" == 'active' && "" != 'null' && "" != ""),
+          id: ""
+        },
+      },
+      send_unhashed_email: ("false" === "true"), // Set this to true if you would like to collect unhashed email address of logged in users.
+      g_feed_region: "DE", // Change this if your Google Ads feed is in another region
+      logging: ("false" === "true"), // Enable this to see Analyzify logs in console
+      logs: [],  // An array to store log messages
+      stopAtLog: false, // Set this to true if you want to use a debugger while logging
+      // Modify the following button attributes if you do not see any ee_addToCart datalayer event when you click add to cart button in any product detail page.
+      addtocart_btn_attributes: {
+          "type": ["submit"],
+          "name": ["add-to-cart", "add"],
+          "data-add-to-cart-text": ["Add to Cart"],
+          "class": ["addtocart-button", "pdp-form--atc-button", "button-add", "add-to-cart", "add_to_cart", "buttonAddtoCart", "product-form__add-to-cart", "gtmatc", "product-form__cart-submit", "AddToCartText", "AddToCart", "AddToCart-product-template", "product__add-to-cart", "single_add_to_cart_button", "js_frm_cart", "product-buy-buttons--cta", "jsfrmcart", "product-buy-buttons--cta"],
+          "id": ["AddToCart"]
+      },
+      wishlist_btn_attributes: {
+          "class": ["test-wishlist"]
+      },
+      // Modify the following element attribute if you see that quantity being pushed to datalayer is wrong when you try to add the a product to the cart with more than 1 as quantity.
+      product_quantity:{
+          "name": ["quantity"]
+      },
+      // Modify the following button attributes if you do not see any ee_removeFromCart datalayer event when you remove any item from the cart in the cart page.
+      removefromcart_btn_attributes: {
+          "data-remove-item": ["cart-template"],
+          "data-cart-remove": ["Remove"],
+          "aria-label": ["Remove"],
+          "class": ["cart__remove-btn", "cart__remove", "cart__removee", "cart-item__remove", "item-remove", "remove", "rebuy-cart__flyout-item-remove", "cart_ac_remove", "cartacremove", "previewCartItem-remove", "cart-remove", "btn-remove", "remove-product", "ajaxcart__qty-remove", "quick-cart__item-remove"],
+          "id": ["CartDrawer-Remove"],
+          "href": ["/cart/change?id=", "/cart/change?line="]
+      },
+      // Modify the following button attributes if you do not see ee_checkout datalayer event when you click "checkout" button in the cart page or cart drawer.
+      checkout_btn_attributes: {
+          "name": ["checkout"],
+          "class": ["upcart-checkout-button", "cart__submit", "checkout-trigger", "rebuy-cart__checkout-button", "button-checkout", "checkout-btn"],
+          "href": ["/checkout"],
+          "id": ["CartDrawer-Checkout"],
+          "value": ["Checkout"]
+      },
+      // Modify the following button attributes if you do not see any ee_productClick datalayer event when you click to a product in collection pages.
+      collection_prod_click_attributes: {
+          "href": ["/products/"],
+          "class": ["boost-pfs-addtocart-select-options"]
+      },
+      // Modify the following button attributes if you do not see any ee_addToCart datalayer event when you click add to cart button in any collection pages.
+      collection_atc_attributes: {
+          "name": ["add"],
+          "class": ["add-to-cart-btn", "hit-buy-button", "product-form__cart-submit", "spf-product__form-btn-addtocart", "add-to-cart", "boost-pfs-addtocart-btn", "js_addtc", "pratc"],
+          "type": ["submit"],
+          "aria-label": ["Add to cart"],
+          "id": ["product-add-to-cart"]
+      },
+      // Modify the following button attributes if you do not see any ee_productClick datalayer event when you click to a product in search result pages.
+      search_prod_click_attributes: {
+        "href": ["/products/"]
+      },
+      foundElements: [],
+      foundAtcElementForms: [],
+      foundBoostElements: [],
+    };
+    var custom_classes = "";
+    var each_element;
+    if(custom_classes != "" && custom_classes != "null"){
+      if(custom_classes.includes(',')){
+        each_element = custom_classes.split(',');
+      }else{
+        custom_classes = custom_classes+",";
+        each_element = custom_classes.split(',');
+      }
+      for(var i=0; i<each_element.length; i++){
+        if(each_element[i].includes(":")){
+          var aClass= each_element[i].split(":");
+          if(aClass[0] == "delete"){
+            if(analyzify.hasOwnProperty(aClass[1])){
+              if(analyzify[aClass[1]].hasOwnProperty(aClass[2])){
+                if(analyzify[aClass[1]][aClass[2]].includes(aClass[3])){
+                  var ind = analyzify[aClass[1]][aClass[2]].indexOf(aClass[3]);
+                  analyzify[aClass[1]][aClass[2]].splice(ind,1);}}}
+          }else if(analyzify.hasOwnProperty(aClass[0])){
+            if(analyzify[aClass[0]].hasOwnProperty(aClass[1])){
+              if(!analyzify[aClass[0]][aClass[1]].includes(aClass[2])){analyzify[aClass[0]][aClass[1]].push(aClass[2]);}
+            }else{
+              analyzify[aClass[0]][aClass[1]] = [];
+              analyzify[aClass[0]][aClass[1]].push(aClass[2]);}}}}}
+    analyzify.log = function(t) {
+        if (window.analyzify.logging && t != null) {
+            console.log(`** Analyzify Logger: ${typeof t === 'object' ? '\n' : ''}`, t);
+            analyzify.logs.push(t);
+            if (analyzify.stopAtLog) {
+              debugger;
+            }
+        }
+    };
+</script>
+<!-- END app snippet -->
+<!-- BEGIN app snippet: analyzify-functions -->
+<script>
+  window.analyzify.adsIdFormat = function (item_id = null, item_variant_id = null, item_sku = null) {
+    if (analyzify.properties.GADS.product_id_format == 'product_id_' && item_id !== null) {return item_id.toString();
+    } else if (analyzify.properties.GADS.product_id_format == 'variant_id_' && item_variant_id !== null) {return item_variant_id.toString();
+    } else if (analyzify.properties.GADS.product_id_format == 'product_sku_' && item_sku !== null) {return item_sku.toString();
+    } else {return `shopify_${analyzify.properties.GADS.feed_region}_${item_id}_${item_variant_id}`;}};
+  window.analyzify.singleProdInfos = function (product) {
+    var prodInfos = [
+      {
+        item_id: product.id.toString(),
+        item_name: product.title,
+        item_brand: product.vendor || null,
+        item_type: product.type || null,
+        item_sku: product.variants && product.variants.length > 0 ? product.variants[0].sku : product.sku || null,
+        item_handle: product.handle,
+        quantity: product.quantity || 1,
+        item_variant:
+          product.variants && product.variants.length > 0 ? product.variants[0].title : product.variant_title || null,
+        item_variant_id:
+          product.variants && product.variants.length > 0 ? product.variants[0].id.toString() : product.variant_id.toString() || null,
+        price: Number.parseFloat(
+          (product.variants && product.variants.length > 0 ? product.variants[0].price : product.price) / 100,
+        ),
+        id: window.analyzify.adsIdFormat(
+          (item_id = product.id || null),
+          (item_variant_id =
+            product.variants && product.variants.length > 0 ? product.variants[0].id : product.variant_id || null),
+          (item_sku = product.variants && product.variants.length > 0 ? product.variants[0].sku : product.sku || null),
+        ),
+        google_business_vertical: 'retail',
+      },
+    ];
+    return prodInfos;
+  };
+  window.analyzify.multipleProdInfos = function (products) {
+    var prodInfos = products.map((product, i) => {
+        if (product.title) {
+          return {
+            index: i+1,
+            item_brand: product.vendor  || null,
+            item_type: product.type || null,
+            item_sku: product.variants[0].sku || product.sku || null,
+            item_name: product.title,
+            item_handle: product.handle,
+            item_id: product.id.toString(),
+            quantity: product.quantity || 1,
+            price: Number.parseFloat((product.variants[0].price * 0.01).toFixed(2)),
+            id: window.analyzify.adsIdFormat(
+              (item_id = product.id || null),
+              (item_variant_id = product.variant_id || product.variants[0].id || null),
+              (item_sku = product.sku || null),
+            ),
+            item_variant: product.variants[0].title || product.variant_title || null,
+            item_variant_id: product.variants[0].id.toString() || product.variant_id.toString(),
+            business_vertical: 'retail',
+          };
+        } else {
+          return {
+            index: i,
+            item_name: 'Unknown',
+          };
+        }
+      });
+   return prodInfos;
+  };
+  window.analyzify.multipleCartProdInfos = function (products) {
+    var prodInfos = products.map((product, i)=>{return {
+          index: i+1,
+          item_brand: product.vendor || null,
+          item_type: product.product_type ||  null,
+          item_sku: product.sku || null,
+          item_name: product.product_title || product.title,
+          item_handle: product.handle,
+          item_id: product.product_id.toString(),
+          quantity: product.quantity,
+          price: Number.parseFloat((product.price * 0.01).toFixed(2)),
+          id: window.analyzify.adsIdFormat(
+            (item_id = product.product_id || null),
+            (item_variant_id = product.variant_id || null),
+            (item_sku = product.sku || null),
+          ),
+          item_variant: product.variant_title || null,
+          item_variant_id: product.variant_id.toString() || null,
+          business_vertical: 'retail',
+        };});
+    return prodInfos;
+  };
+  window.analyzify.findQuantity = function () {
+    const foundQty = [];
+    const findQty = (attrObj) => {
+      foundQty.length = 0;
+      for (const [key, value] of Object.entries(attrObj)) {
+        const qtyEl = document.querySelector(`[${key}="${value}"]`);
+        if (qtyEl && qtyEl.value) {
+          foundQty.push(qtyEl.value);
+        }
+      }
+    };
+    findQty(analyzify.product_quantity);
+    const prodQty = foundQty.length > 0 ? foundQty[0] : 1;
+    return Number(prodQty);
+  };
+  function analyzify_getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+  window.getCookieValue = function (cookieName) {
+    var name = cookieName + '=';
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  };
+  window.getClientId = async function (measurementId) {
+    var gaCookie = window.getCookieValue('_ga');
+    if (gaCookie) {
+      var clientIdMatch = gaCookie.match(/GA\d+.\d+.(\d+.\d+)/);
+      if (clientIdMatch) {
+        const clientId = clientIdMatch[1];
+        analyzify.log('cid found --> cookie');
+        return clientId;
+      }
+    }
+    if (window.gtag) {
+      const clientId = await new Promise((resolve) => {
+        window.gtag('get', measurementId, 'client_id', resolve);
+      }).then((clientId) => clientId);
+      analyzify.log('cid found --> gtag');
+      return clientId;
+    } else analyzify.log('ERROR: cid not found -->');
+  };
+  window.getSessionId = async function (measurementId) {
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    var gaCookie = window.getCookieValue(`_ga_${measurementId.substring(2)}`);
+    analyzify.log(gaCookie);
+    var sessionId = gaCookie ? gaCookie.match(/GS1.1.(\d+)./)[1] : null;
+    if (sessionId) {
+      analyzify.log('sess_id found --> cookie');
+      return sessionId;
+    }
+    if (window.gtag) {
+      sessionId = await new Promise((resolve) => {
+        window.gtag('get', measurementId, 'session_id', resolve);
+      }).then((sessionId) => sessionId);
+      analyzify.log('sess_id found --> gtag');
+      return sessionId;
+    }
+    analyzify.log('ERROR: sess_id not found');
+  };
+  window.analyzify_updateCartAttributes = async function (attributes) {
+    const url = '/cart/update.json';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        attributes,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          analyzify.log('ERROR: Analyzify cart data updates sent.');
+        } else {
+          analyzify.log('ERROR: Analyzify cart data updates could not be sent.');
+        }
+      })
+      .catch((error) => {
+        analyzify.log(error);
+      });
+  };
+  window.analyzify_checksendcartdata = async function () {
+    const measurementId = 'G-BZ2MWMSL4D';
+    const clientId = await window.getClientId(measurementId);
+    const sessionId = await window.getSessionId(measurementId);
+    const fbp = window.getCookieValue('_fbp');
+    const fbc = window.getCookieValue('_fbc');
+    let gclid = analyzify_getQueryParam('gclid');
+    let fbclid = analyzify_getQueryParam('fbclid');
+    let utm_source = analyzify_getQueryParam('utm_source');
+    let utm_medium = analyzify_getQueryParam('utm_medium');
+    let utm_campaign = analyzify_getQueryParam('utm_campaign'); // Yeni eklenen satır
+    let utm_content = analyzify_getQueryParam('utm_content'); // Yeni eklenen satır
+    let utm_id = analyzify_getQueryParam('utm_id'); // Yeni eklenen satır
+    let utm_term = analyzify_getQueryParam('utm_term'); // Yeni eklenen satır
+    let source, medium;
+    if (utm_source && utm_medium) {
+      source = utm_source;
+      medium = utm_medium;
+    } else if (fbclid) {
+      source = 'facebook';
+      medium = 'paid';
+    } else if (gclid) {
+      source = 'google';
+      medium = 'cpc';
+    } else {
+      analyzify.log('utm_source and utm_medium parameters not found.');
+    }
+    const attributes = {};
+    //Google Ids
+    if (clientId) {attributes['azfy_ga'] = clientId;}
+    if (gclid) {attributes['azfy_gclid'] = gclid;}
+    if (sessionId) {attributes[[`azfy_ga_${measurementId.substring(2)}`]] = sessionId;}
+    //UTMs
+    if (source) { attributes['azfy_utm_source'] = source;}
+    if (medium) {attributes['azfy_utm_medium'] = medium;}
+    if (utm_campaign) {attributes['azfy_utm_campaign'] = utm_campaign;} // Yeni eklenen satır
+    if (utm_content) {attributes['azfy_utm_content'] = utm_content;} // Yeni eklenen satır
+    if (utm_id) {attributes['azfy_utm_id'] = utm_id;} // Yeni eklenen satır
+    if (utm_term) {attributes['azfy_utm_term'] = utm_term;} // Yeni eklenen satır
+    //Facebook
+    if (fbp) {attributes['azfy_fbp'] = fbp;}
+    if (fbc) {attributes['azfy_fbc'] = fbc;}
+    window.analyzify_updateCartAttributes(attributes);
+  };
+  window.analyzify.GetClickedProductPosition = function(elementHref, sku){
+    if(sku != ''){
+        {% for product in collection.products %}
+        var collectionProductsSku = `{{ product.selected_or_first_available_variant.sku | remove: "'" | remove: '"' }}`;
+        if(sku == collectionProductsSku) {return {{ forloop.index }} ;}
+        {% endfor %}
+        return 0;
+    } else {
+        var elementIndex = -1
+        collectionProductsElements = document.querySelectorAll('main a[href*="/products/"]');
+        let hrefValues = [];
+        let uniqueCollectionProductsElements = [];
+        collectionProductsElements.forEach((element) => {
+        let href = element.getAttribute('href');
+        if (!hrefValues.includes(href)) {
+            uniqueCollectionProductsElements.push(element);
+            hrefValues.push(href);
+        }
+        });
+        uniqueCollectionProductsElements.forEach(function(element,index){
+            if (element.href.includes(elementHref)) {elementIndex = index + 1};
+        });
+        return elementIndex
+    }
+  };
+  window.findElemInPath = function(pathArray, attributeObj) {
+    let buttonFound = null;
+    if (pathArray) {
+      // Loop through the path array
+      for (let i = 0; i < pathArray.length; i++) {
+      // Loop through the attribute object
+        for (const attribute in attributeObj) {
+          if (attributeObj.hasOwnProperty(attribute)) {
+            const attributeName = attribute;
+            const attributeValues = attributeObj[attribute];
+            if (pathArray[i].hasAttribute !== undefined && pathArray[i].hasAttribute(attributeName) === true) {
+              // Loop through the attribute values
+              attributeValues.forEach(function(selectedValue) {
+              // Check if the current path element's attribute contains the selected value
+                if (pathArray[i].getAttribute(attributeName).indexOf(selectedValue) > -1) {
+                  analyzify.log(`${selectedValue} found in ${attributeName} attribute list.`);
+                  buttonFound = pathArray[i];
+                  analyzify.foundElements.push(pathArray[i]);
+                  analyzify.foundAtcElementForms.push(pathArray[i].closest("form[action='/cart/add']"));
+                  analyzify.foundBoostElements.push(pathArray[i].closest(".boost-pfs-filter-product-item"));}
+              });}}}}}
+    return buttonFound;
+  };
+</script>
+<!-- END app snippet -->
+
+
+<!-- BEGIN app snippet: adv-gtm-head -->
+<script type="lazyload_int">
+  
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{ shop.metafields.gtm.tracking_id }}');
+  
+  window.analyzify = {...analyzify,
+    analyzify_version: '3.3', // Analyzify version information
+    integration_method: 'advanced',
+    pageFly: false, // Set this to true if you are using PageFly in your website
+    header_nav_btn_attributes: {
+      "class": ["header-shortlink", "header__menu-item"],
+      "id": []
+    },
+    disclosure_attributes: {
+        "class": ['disclosure__link'],
+    },
+    accordion_summary_attributes: {
+        "class": ["accordion__title", "accordion"]
+    },
+    hero_banner_area_attributes:{
+        "class": ["banner__box", "banner__column-inner banner__column-inner--hero banner__column-inner--hero-large"]
+    },
+    hero_banner_title_attributes:{
+        "class": ["banner__heading", "content__title content__title--hero content__title--hero-large"]
+        },
+    hero_banner_subtitle_attributes:{
+        "class": ["content__subtitle content__subtitle--hero content__subtitle--hero-large"]
+    },
+    hero_banner_cta_attributes:{
+        "class": ["content__buttons content__buttons--hero content__buttons--hero-large"]
+    },
+    // In this section, we are adding eventListeners for add-to-cart functionality for stores using customizable products with relevant applications.
+    global_atc_functions: ["pplrAddToCartCompleted"],
+    rebuy_atc_rfc: false,
+  };
+</script>
+<!-- END app snippet -->
+<!-- BEGIN app snippet: adv-gtm-body -->
+<script type="lazyload_int">
+  window.analyzify.Initialize = function() {
+  window.analyzify.loadScript = function(callback) {callback();}
+  window.analyzify.AppStart = function(){
+    
+    const detectedCart = {{ cart | json }};
+    const detectedCurrency = detectedCart.currency;
+    window.analyzify.detectedCurrency = detectedCart.currency;
+    {% assign template_name = template.name %}
+    const sh_info_obj = {
+      event: 'sh_info',
+      page_type: {{ template_name | replace: 'index', 'homepage' | default: 'other' | capitalize | json }},
+      page_currency: detectedCurrency,
+      page_id: Date.now(),
+      analyzify_source: "advanced",
+      implementation_type:"extension",
+      user: {
+        type: {% if customer %}'member',{% else %}'visitor',{% endif %}
+        {% if customer %}
+        id: `{{ customer.id | remove: "'" | remove: '"' }}`,
+        first_name: `{{ customer.first_name | remove: "'" | remove: '"' }}`,
+        last_name: `{{ customer.last_name | remove: "'" | remove: '"' }}`,
+        last_order: '{{ customer.last_order.created_at | date: "%B %d, %Y %I:%M%p" }}',
+        orders_count: '{{ customer.orders_count }}',
+        total_spent: '{{ customer.total_spent | money_without_currency }}',
+        email_sha256: '{{ customer.email | sha256 }}',
+        email_sha1: '{{ customer.email | sha1 }}',
+        email: (analyzify.send_unhashed_email === true) ? '{{ customer.email }}' : null,
+        marketing: '{{ customer.accepts_marketing }}',
+        {% endif %}
+    }}
+    window.dataLayer.push(sh_info_obj);
+    {% case template_name %}
+    {% when 'product' %}
+      const productJson = {{ product | json }};
+      const collectionTitle = `{{ product.collections.last.title | remove: "'" | remove: '"' }}` !=''? `{{ product.collections.last.title | remove: "'" | remove: '"' }}`: null;
+      const collectionId = `{{ product.collections.last.id | remove: "'" | remove: '"' }}` !=''? `{{ product.collections.last.id | remove: "'" | remove: '"' }}`: null;
+      const collectionHandle = "{{ product.collections.last.handle | remove: "'" | remove: '"' }}" !=''? "{{ product.collections.last.handle | remove: "'" | remove: '"' }}": null;
+      const singleProdArr = window.analyzify.singleProdInfos(productJson);
+      const variantInvQuantity = Number({{ product.selected_or_first_available_variant.inventory_quantity }});
+      const productAvailable = '{{ product.available | json }}';
+      const variantAvailable = '{{ product.selected_or_first_available_variant.available | json }}';
+      const variantCount = productJson.variants.length;
+      let availableVariantCount = 0;
+      let totalAvailableQuantity = 0;
+      productJson.variants.forEach(variant => {if (variant.available){availableVariantCount += 1;totalAvailableQuantity += variant.inventory_quantity;}});
+      totalAvailableQuantity = totalAvailableQuantity || 0;
+    {% when 'collection' %}
+      const collectionAllProducts = {{ collection.products | json }};
+      const collectionTitle = `{{ collection.title | remove: "'" | remove: '"' }}` !=''? `{{ collection.title | remove: "'" | remove: '"' }}`: null;
+      const collectionId = '{{ collection.id }}'!=''? '{{ collection.id }}': null;
+      const collectionHandle = "{{ collection.handle | remove: "'" | remove: '"' }}" !=''? "{{ collection.handle | remove: "'" | remove: '"' }}": null;
+      const multipleProdsArr = window.analyzify.multipleProdInfos(collectionAllProducts);
+    {% when 'search' %}
+      const searchTerm = '{{ search.terms }}';
+      const searchResults = parseInt('{{ search.results_count }}');
+      const searchResultsJson = {{ search.results | json }};
+      const multipleProdsArr = window.analyzify.multipleProdInfos(searchResultsJson);
+    {% endcase %}
+    window.analyzify.CollectionPageHandle = function(){
+      window.dataLayer.push({ecommerce: null});
+      let items = [];
+      multipleProdsArr.forEach((product) => {items.push(product);});
+      window.dataLayer.push({
+          event: 'ee_view_item_list',
+          ecommerce: {item_list_id: collectionId,item_list_name: collectionTitle,analyzify_source: 'advanced',implementation_type: 'extension',items: items}});}
+    window.analyzify.SearchPageHandle = function(){
+      window.dataLayer.push({ecommerce: null});
+      let items = [];
+      multipleProdsArr.forEach((product) => {items.push(product);});
+      window.dataLayer.push({
+        event: 'ee_search',
+        page_type: 'search',
+        search_term: searchTerm,
+        search_results: searchResults,
+        ecommerce: {                
+          item_list_id: null,
+          item_list_name: `Search Results: ${searchTerm}`,
+          analyzify_source: 'advanced',
+          implementation_type: 'extension',
+          items: items}
+      });}
+    window.analyzify.ProductPageHandle = function() {
+      window.dataLayer.push({ecommerce: null});
+      singleProdArr[0].item_variant = "{{ product.selected_or_first_available_variant.title | remove: "'" | remove: '"' }}" !=''? "{{ product.selected_or_first_available_variant.title | remove: "'" | remove: '"' }}": null;
+      singleProdArr[0].item_variant_id = "{{ product.selected_variant.id | default: product.variants[0].id }}" !=''? "{{ product.selected_variant.id | default: product.variants[0].id }}": null;
+      window.dataLayer.push({
+        event: 'ee_view_item',
+        ecommerce: {
+          currency: detectedCurrency,
+          value: Number.parseFloat(('{{ product.variants.first.price }}' * 0.01).toFixed(2)),
+          analyzify_source: 'advanced',
+          implementation_type: 'extension',
+          items: [{
+              ...singleProdArr[0],
+              index: 1,
+          }]},});
+    };
+    window.analyzify.cartPageHandle = async function() {
+      window.dataLayer.push({ecommerce: null});
+      const viewCart = async function (){
+        try{
+          const cartObjRes = await fetch('/cart.js');
+          const cartObj = await cartObjRes.json();
+          const multipleProdsArr = analyzify.multipleCartProdInfos(cartObj.items);
+          let items = [];
+          multipleProdsArr.forEach((product) => {items.push({...product,item_list_id: 'cart',item_list_name: 'Cart'});});
+          window.dataLayer.push({
+            event: 'ee_view_cart',
+            page_type: 'cart',
+            ecommerce: {
+              currency: detectedCurrency,
+              value: parseFloat((cartObj.total_price * 0.01).toFixed(2)),
+              total_quantity: Number(cartObj.item_count),
+              total_item:items.length,
+              analyzify_source: 'advanced',
+              implementation_type: 'extension',
+              items: items}});
+        }catch (error) {analyzify.log(error);}
+      }; viewCart();};
+    function createNavData(path, attributes, navTitle) {
+      const nav_elem = window.findElemInPath(path, attributes);
+      if (!nav_elem) {analyzify.log("No navigation element found.");return null;} // Return null if element is not found  
+      const tagName = nav_elem.tagName;
+      const type = tagName === 'A'? 'link': tagName === 'BUTTON'? 'button': tagName === 'NAV'? 'layer':'text';
+      const title = nav_elem.innerText.trim() || '';
+      const url = tagName === 'A' ? nav_elem.href : (tagName === 'NAV' || tagName === 'DIV' || tagName === 'BUTTON') ? (nav_elem.closest('a') ? nav_elem.closest('a').href : undefined) : undefined;
+      return {
+        event: 'ee_navClick',
+        nav: {position: navTitle,type,title,url,},};}
+    function pushNavData(path, attributes, navTitle) {
+      const navData = createNavData(path, attributes, navTitle);
+      if (navData !== null) {dataLayer.push(navData);}}
+    document.addEventListener('click', (event) => {
+        let path = event.path || (event.composedPath && event.composedPath());
+        const checkout_elem = window.findElemInPath(path, analyzify.checkout_btn_attributes);
+        const rfc_elem = window.findElemInPath(path, analyzify.removefromcart_btn_attributes);
+        const header_nav_btn_elem = window.findElemInPath(path, analyzify.header_nav_btn_attributes);
+        if (header_nav_btn_elem !== null) {pushNavData(path, analyzify.header_nav_btn_attributes, 'header-nav');}
+        const disclosure_elem = window.findElemInPath(path, analyzify.disclosure_attributes);
+        if (disclosure_elem !== null) {
+          // analyzify.log(disclosure_elem);
+          dataLayer.push({
+            event: 'ee_disclosure_changed',
+            data_value: disclosure_elem ? disclosure_elem.hasAttribute('data-value') ? disclosure_elem.getAttribute('data-value').trim() : null : null,
+            selected_option: disclosure_elem ? disclosure_elem.textContent.replace(/\s+/g, ' ').trim() : null,
+            type: disclosure_elem.closest('form').classList.contains('localization-form') ? 'localization-form' : null
+          });}  
+        const accordion_summary_elem = window.findElemInPath(path, analyzify.accordion_summary_attributes);
+        if (accordion_summary_elem !== null) {
+          // analyzify.log(accordion_summary_elem);
+          dataLayer.push({
+            event: 'ee_product_detail_accordion',
+            title: accordion_summary_elem.textContent.replace(/\s+/g, ' ').trim() || null
+          });}
+        const hero_banner_area_elem = window.findElemInPath(path, analyzify.hero_banner_area_attributes);
+        if (hero_banner_area_elem !== null) {
+          const allChildren = Array.from(hero_banner_area_elem.children);
+          const targetChild = allChildren.find(sibling => {
+            const titleElement = window.findElemInPath(
+              Array.from(sibling.children).flatMap(child => Array.from(child.children)),
+              analyzify.hero_banner_title_attributes);
+            const subtitleElement = window.findElemInPath(
+              Array.from(sibling.children).flatMap(child => Array.from(child.children)),
+              analyzify.hero_banner_subtitle_attributes);
+            const ctaElement = window.findElemInPath(
+              Array.from(sibling.children).flatMap(child => Array.from(child.children)),
+              analyzify.hero_banner_cta_attributes);
+            const link = path.find(element => (element.tagName === 'A' || element.tagName === 'BUTTON') && element.href);
+            if((titleElement || subtitleElement) && link){
+              dataLayer.push({
+                event: 'ee_heroBannerClick',
+                heading: titleElement ? titleElement.textContent.trim().substring(0, 100) : null,
+                description: subtitleElement ? subtitleElement.textContent.trim().substring(0, 100) : null,
+                cta_title: (ctaElement && link) ? ctaElement.textContent.trim().substring(0, 100) : null,
+                cta_url: link ? link.href : null,});}
+            return titleElement || subtitleElement; });}
+        {% case template_name %}
+        {%- when 'product' -%}
+        const atc_elem = window.findElemInPath(path, analyzify.addtocart_btn_attributes);
+        const wishlist_elem = window.findElemInPath(path, analyzify.wishlist_btn_attributes);
+
+  if(atc_elem == null && analyzify.global_atc_functions.length) {
+          analyzify.global_atc_functions.forEach(function(fname){
+              window.addEventListener(fname , function(e) {
+                analyzify.atcEventFunc();
+                analyzify.log("customized product added")
+                analyzify.log(e)
+                window.e = e;})});}
+        else if(atc_elem !== null) {analyzify.atcEventFunc();
+        } else if (wishlist_elem !== null) {analyzify.wishlistEventFunc();}{% when 'collection' %}
+        const col_prod_click_elem = window.findElemInPath(path, analyzify.collection_prod_click_attributes);
+        const coll_atc_elem = window.findElemInPath(path, analyzify.collection_atc_attributes);
+        if(col_prod_click_elem !== null){analyzify.colProdClickFunc();
+        }else if(coll_atc_elem !== null) {analyzify.collAtcEventFunc();}{% when 'search' %}
+        const search_prod_click_elem = window.findElemInPath(path, analyzify.search_prod_click_attributes);
+        if(search_prod_click_elem !== null){analyzify.searchProdClickFunc();}{% endcase %}if (checkout_elem !== null) {analyzify.checkoutEventFunc();
+        }else if(rfc_elem !== null) {analyzify.rfcEventFunc();}
+        else{analyzify.log('The clicked button/link was not a addtocart, removefromcart or checkout button.');analyzify.log(event);}});
+    if (analyzify.rebuy_atc_rfc) {
+        const addToCartHandler = (event) => {
+          window.dataLayer.push({ecommerce: null});
+            let item = event.detail.item;
+            let productData = {
+              event: 'ee_add_to_cart',
+              ecommerce:{
+                currency:detectedCurrency,
+                value: Number.parseFloat(((item.price / 100)*item.quantity).toFixed(2)),
+                items:[{
+                    item_id: item.product_id.toString(),
+                    item_name: item.product_title.replace(/["']/g, ""),
+                    item_brand: item.vendor,
+                    item_category: item.product_type,
+                    item_variant: item.variant_title,
+                    variant_id: item.variant_id,
+                    item_price: Number.parseFloat(item.price / 100),
+                    sku: item.sku,
+                    quantity: item.quantity,
+                    item_handle: item.handle
+                  }]}};window.dataLayer.push(productData);};
+        const removeFromCartHandler = (event) => {
+          window.dataLayer.push({ecommerce: null});
+          let item = event.detail.product;
+          let productData = {
+            event: 'ee_remove_from_cart',
+            ecommerce:{
+              currency:detectedCurrency,
+              value: parseFloat(((item.price / 100)*item.quantity).toFixed(2)),
+              items:[{
+                  item_id: item.product_id.toString(),
+                  item_name: item.product_title.replace(/["']/g, ""),
+                  item_brand: item.vendor,
+                  item_category: item.product_type,
+                  item_variant: item.variant_title,
+                  variant_id: item.variant_id,
+                  item_price: Number.parseFloat(item.price / 100),
+                  sku: item.sku,
+                  quantity: item.quantity,
+                  item_handle: item.handle}]}};
+          window.dataLayer.push(productData);};
+        document.addEventListener('rebuy:cart.add', addToCartHandler);
+        document.addEventListener('rebuy:smartcart.product-removed', removeFromCartHandler);}
+    window.analyzify.checkoutEventFunc = async () => {
+      const viewCart = async function (){
+        window.dataLayer.push({ecommerce: null});
+        try{
+          const cartObj = await fetch('/cart.js')
+            .then(function(response){
+              return response.json();
+            }).catch(function(e){analyzify.log(e);});
+          const multipleProdsArr = analyzify.multipleCartProdInfos(cartObj.items);let items = [];
+          multipleProdsArr.forEach((product) => {items.push(product);});
+          window.dataLayer.push({
+            event: 'ee_begin_checkout',
+            page_type: 'cart',
+            ecommerce:{currency: detectedCurrency,value: parseFloat((cartObj.total_price * 0.01).toFixed(2)),total_item:items.length,total_quantity: Number(cartObj.item_count),analyzify_source: 'advanced',implementation_type: 'extension',items: items}});
+        }catch (error){analyzify.log(error);}
+      };viewCart();};
+    window.analyzify.rfcEventFunc = async () => {
+    const removedItem = [];
+    const possibleIDs = [];
+    const cartItems = await fetch('/cart.js').then(response => response.json());
+    const {
+      items: cartItemsJson
+    } = cartItems;
+    for (let i = 0; i < analyzify.foundElements.length; i++) {
+      const formElement = analyzify.foundElements[i];
+      if(formElement){
+        if(formElement.getAttribute('href')) {
+          if(formElement.getAttribute('href').includes('/cart/change?line=')){
+            const productCartOrder_1 = formElement.getAttribute('href').split('change?line=')[1];
+            const productCartOrder = productCartOrder_1.split('&quantity')[0];
+            for (let i = 0; i < cartItems.items.length; i++) {if( i + 1 ==  productCartOrder){removedItem.push(cartItems.items[i]);}}
+          } else if(formElement.getAttribute('href').includes('/cart/change?quantity=0&line=')){
+            const productCartOrder = formElement.getAttribute('href').split('/cart/change?quantity=0&line=')[1];
+            for (let i = 0; i < cartItems.items.length; i++) {if( i + 1 ==  productCartOrder){removedItem.push(cartItems.items[i]);}}}
+        } else if(formElement.getAttribute("alt")){
+          const productName_1 = formElement.getAttribute("alt")
+          const productName_2 = productName_1.replace("Remove ", "");
+          for (let i = 0; i < cartItems.items.length; i++) {if( cartItems.items[i].product_title ==  productName_2){removedItem.push(cartItems.items[i]);}}
+        } else if(formElement.getAttribute('data-index')) {
+          const productCartOrder = formElement.getAttribute('data-index');
+          for (let i = 0; i < cartItems.items.length; i++) {if( i + 1 ==  productCartOrder){removedItem.push(cartItems.items[i]);}}}
+        if (!removedItem.length) {
+          const attrValues = formElement.getAttributeNames().map(name => formElement.getAttribute(name));
+          attrValues.forEach((formElement) => {if(formElement.match(/([0-9]+)/g)){possibleIDs.push(formElement.match(/([0-9]+)/g));}});
+          possibleIDs.forEach((possibleID) => {possibleID.forEach((id) => {cartItems.items.filter(function(product) {if (product.variant_id == Number(id)){removedItem.push(product);}});})})}
+        if(removedItem[0]) {
+          const singleProdArr = analyzify.singleProdInfos(removedItem[0]);
+          window.dataLayer.push({ecommerce: null});
+          window.dataLayer.push({
+          event: 'ee_remove_from_cart',
+          ecommerce: {
+            currency: detectedCurrency,
+            value: parseFloat((singleProdArr[0].price * singleProdArr[0].quantity).toFixed(2)),
+            analyzify_source: 'advanced',
+            implementation_type: 'extension',
+            items: [{...singleProdArr[0],index: 1}]}});
+              analyzify.log('Product ee_removeFromCart==>', window.dataLayer);
+              break; // Döngüyü sonlandır
+          } else{ analyzify.log('Removed element not found');}}}}
+    {% case template_name %}
+    {% when 'product' %}
+      window.addEventListener("load", (event) => {     
+      if(analyzify.pageFly){
+        const element1 = document.querySelector('[data-pf-type="ProductATC"]');
+        const element2 = document.querySelector('[data-pf-type="ProductATC2"]');
+        if(element2) element2.addEventListener("click",analyzify.atcEventFunc);
+        if(element1) element1.addEventListener("click",analyzify.atcEventFunc);
+      }});
+    {% endcase %}
+    window.onload = function () {
+      const templateName = '{{ template.name }}';
+      let templateTrue = false;
+      if (templateName == "index" || templateName == "page") {templateTrue = true;}
+      if (window.__shgProductInits && templateTrue) {
+        const shogunAllProds = window.__shgProductInits;
+        const shogunHeadingElement = document.querySelector(".shogun-heading-component h1");
+        const shogunProductAllClass = "shg-product";
+        const shogunProductBtnClass = "shg-product-atc-btn-wrapper";
+        const productBtns = document.querySelectorAll("." + shogunProductBtnClass);
+        const pageUrl = window.location.href;
+        let collectionTitle = "Homepage";
+        let collectionHandle = "Homepage";
+        let atcSent = false;
+        if (pageUrl.indexOf("pages/") !== -1) {
+          if (shogunHeadingElement) {
+            collectionTitle = shogunHeadingElement.textContent.trim();}
+            collectionHandle = pageUrl.substring(pageUrl.indexOf("pages/") + "pages/".length);}
+        const prodElements = document.querySelectorAll("." + shogunProductAllClass);
+        const idArray = [];
+        prodElements.forEach((element) => {idArray.push(element.id);});
+        const listedProds = shogunAllProds.filter((product) => idArray.includes(product.uuid));
+        window.dataLayer.push({ecommerce: null});
+        window.dataLayer.push({
+            event: 'ee_view_item_list',
+            category_title: collectionTitle,
+            category_handle: collectionHandle,
+            listedProds});
+        document.addEventListener('click', function(event) {
+          const clickedElement = event.target;
+          let shgProductId = null;
+          let parentElement = clickedElement.parentNode;
+          window.dataLayer.push({ecommerce: null});
+          while (parentElement && !shgProductId) {
+            if (parentElement.classList && parentElement.classList.contains(shogunProductAllClass)) {
+              shgProductId = parentElement.id;}
+              parentElement = parentElement.parentNode;}
+          if (clickedElement.closest("." + shogunProductBtnClass)) {
+            if (shgProductId && atcSent == false) {
+              atcSent = true;
+              const clickedProduct = shogunAllProds.find((product) => product.uuid === shgProductId);
+              const dataLayerObj = {
+                event: "ee_add_to_cart",
+                category_title: collectionTitle,
+                category_handle: collectionHandle,
+                clickedProduct};
+              window.dataLayer.push(dataLayerObj);
+              setInterval(function() {atcSent = false;}, 1000);}
+          } else {
+            if (shgProductId) {
+              const clickedProduct = shogunAllProds.find((product) => product.uuid === shgProductId);
+              const dataLayerObj = {
+                event: "ee_select_item",
+                category_title: collectionTitle,
+                category_handle: collectionHandle,
+                clickedProduct};
+              window.dataLayer.push(dataLayerObj);}}});}};
+    window.analyzify.atcEventFunc = function() {
+      const formElement = analyzify.foundAtcElementForms[0];
+      let variantInput = '{{ product.selected_or_first_available_variant.id }}';
+      let productPrice = 0;
+      let variantSku = '';
+      let variantName = '';
+      if (!analyzify.pageFly && formElement) {
+        const formVariantInput = Array.from(formElement.elements).find(item => item.name === 'id');
+        variantInput = formVariantInput ? formVariantInput.value : variantInput;
+      } else {
+        const initialUrl = window.location.href;
+        variantInput = initialUrl.includes('variant=') ? initialUrl.split('variant=')[1] : variantInput;}
+      for (let i = 0; i < productJson.variants.length; i++) {
+        if (productJson.variants[i].id == variantInput) {
+          productPrice = productJson.variants[i].price;
+          variantSku = productJson.variants[i].sku;
+          variantName = productJson.variants[i].public_title || productJson.variants[i].title;
+          break;}}
+      const prodQty = analyzify.findQuantity() || 1;
+      singleProdArr[0].item_variant = variantName;
+      singleProdArr[0].item_variant_id = variantInput;
+      singleProdArr[0].item_sku = variantSku;
+      singleProdArr[0].price = productPrice/100;
+      window.dataLayer.push({ecommerce: null});
+      window.dataLayer.push({
+        event: 'ee_add_to_cart',
+        ecommerce:{
+          currency: detectedCurrency,
+          value: parseFloat((productPrice * 0.01 * prodQty).toFixed(2)),
+          analyzify_source: 'advanced',
+          implementation_type: 'extension',
+          items: [{
+              ...singleProdArr[0],
+              index: 1,
+              category_id: collectionId !== '' ? collectionId : null,
+              category_title: collectionTitle !== '' ? collectionTitle : null,
+              category_handle: collectionHandle !== '' ? collectionHandle : null,
+              quantity: prodQty,}]}});
+      analyzify.log('Product ee_add_to_cart==>');
+      analyzify.log(window.dataLayer);};
+    window.analyzify.wishlistEventFunc = function(){
+      const initialUrl = window.location.href;
+      let variantInput = '{{ product.selected_or_first_available_variant.id }}';
+      if (initialUrl.includes('variant=')) {variantInput = initialUrl.split('variant=')[1];}
+      const selectedVariant = productJson.variants.find(variant => variant.id === variantInput);
+      const {price: productPrice,sku: variantSku,public_title: variantName = '',} = selectedVariant || {};
+      window.dataLayer.push({ecommerce: null});
+      window.dataLayer.push({
+        event: 'ee_add_to_wishlist',
+        ecommerce: {
+          currency: detectedCurrency,
+          value: Number.parseFloat((productPrice * 0.01).toFixed(2)),
+          analyzify_source: 'advanced',
+          implementation_type: 'extension',
+          items: [{
+            ...singleProdArr[0],
+            index: 1,
+            item_category: collectionTitle,
+            quantity: 1}]},});
+      analyzify.log('Product ee_add_to_wishlist==>');
+      analyzify.log(window.dataLayer);}
+    window.analyzify.collAtcEventFunc = function() {
+        let formElement = analyzify.foundAtcElementForms[0];
+        if (!formElement) {
+          if(analyzify.foundAtcElementForms.length>1){
+            formElement = analyzify.foundAtcElementForms[1]; 
+            if(!formElement) return analyzify.log('Parent form element not found for quick view atc');
+            }else{return analyzify.log('Parent form element not found for quick view atc');}}
+        const productId = formElement.querySelector('.pid')?.value;
+        const possibleIDs = formElement.getAttributeNames()
+            .flatMap(name => formElement.getAttribute(name).match(/([0-9]+)/g))
+            .filter(Boolean);
+        const addedProduct = collectionAllProducts.find(product => {
+            if (productId && product.id === Number(productId)) {return true;}
+            else if (product.variants) {
+                for (let i = 0; i < product.variants.length; i++) {
+                  if (possibleIDs.includes(product.variants[i].id.toString())) {return true;}}}
+            return possibleIDs.includes(product.id.toString());});
+        if (!addedProduct) {return analyzify.log('Parent form element found but product id did not match');}
+        const singleProdArr = window.analyzify.singleProdInfos(addedProduct);
+        const prodQty = analyzify.findQuantity() || 1;
+        window.dataLayer.push({ecommerce: null});
+        window.dataLayer.push({
+            event: 'ee_add_to_cart',
+            ecommerce: {
+            currency: detectedCurrency,
+            value: Number.parseFloat(((addedProduct.price / 100)* prodQty).toFixed(2)),
+            analyzify_source: 'advanced',
+            implementation_type: 'extension',
+            items: [{...singleProdArr[0],index: 1,quantity: prodQty,}]}, });
+        analyzify.log('Product ee_add_to_cart ==>');
+        analyzify.log(window.dataLayer);};
+    window.analyzify.colProdClickFunc = function() {
+      function clickedEvent(foundProd) {
+        window.dataLayer.push({ecommerce: null});
+        const singleProdArr = window.analyzify.singleProdInfos(foundProd);
+        window.dataLayer.push({
+          event: 'ee_select_item',
+          ecommerce: {
+            currency: detectedCurrency,
+            value: (foundProd.price / 100),
+            analyzify_source: 'advanced',
+            implementation_type: 'extension',
+            items: [{...singleProdArr[0],index: 1}]}});}
+      if (analyzify.foundElements[0].hasAttribute('href')) {
+        var href = analyzify.foundElements[0].getAttribute('href');
+        if (href.includes('/products/')) {
+          var handle = href.split('/products/')[1].split('?')[0];
+          var clickedProduct = collectionAllProducts.find(function(product) {return product.handle === handle;});
+          if (!clickedProduct) {return analyzify.log('Clicked product does not found in collection product list');}
+          clickedEvent(clickedProduct);
+        } else { analyzify.log('Found element`s href does not include a product handle.');}
+      } else if (analyzify.foundBoostElements[0].hasAttribute('data-id')) {
+        var prodId = Number(analyzify.foundBoostElements[0].getAttribute('data-id'));
+        var clickedProduct = collectionAllProducts.find(function(product) {return product.id === prodId;});
+        if (!clickedProduct) {return analyzify.log('Clicked product does not found in collection product list');}
+        clickedEvent(clickedProduct);
+      } else {analyzify.log('Found element does not have an href or data-id attribute.'); }};
+    window.analyzify.searchProdClickFunc = function(){
+        if(analyzify.foundElements[0].hasAttribute('href')){
+            var href = analyzify.foundElements[0].getAttribute('href');
+            if(href.includes('/products/')){
+                var handle_0 = href.split('/products/')[1];
+                var handle = handle_0.split('?')[0];
+                var prodPosition;
+                {{search.results | json}}.forEach((product, i) => {if(handle == product.handle) prodPosition = i + 1; });
+                var clickedProduct = searchResultsJson.filter(function(product) {return product.handle === handle;});
+                if (clickedProduct.length == 0 ) return analyzify.log('Clicked product does not found in search product list');
+                const singleProdArr = window.analyzify.singleProdInfos(clickedProduct[0]);
+                window.dataLayer.push({ecommerce: null});
+                window.dataLayer.push({
+                    event: 'ee_select_item',
+                    ecommerce: {
+                      currency: detectedCurrency,
+                      value: (clickedProduct[0].price / 100),
+                      analyzify_source: 'advanced',
+                      implementation_type: 'extension',
+                      items: [{...singleProdArr[0],index: prodPosition}]}});
+            } else {analyzify.log('Found element`s href does not include an product handle.')}
+        } else {analyzify.log('Found element does not have an href attribute.')}}
+    {% case template_name %}
+    {% when 'product' %}
+    analyzify.ProductPageHandle();
+    window.addEventListener('load', function(){
+      const getVariantOptions = document.querySelector('variant-radios');
+      if (getVariantOptions !== null) {
+        let timeout;
+        getVariantOptions.addEventListener('change', function() {
+          clearTimeout(timeout);
+          timeout = setTimeout(function() {
+            let urlObject = new URL(window.location.href);
+            let variantID = urlObject.searchParams.get("variant");
+            const selectedVariant = productJson.variants.find(variant => Number(variant.id) === Number(variantID));
+            if (variantID) {
+              dataLayer.push({
+                event: 'ee_variant_changed',
+                variant_id: variantID,
+                variant_title: selectedVariant.title || null,
+                product_price: selectedVariant.price/100,
+                product_sku: selectedVariant.sku,
+                variant_availability: selectedVariant.available == true || selectedVariant.available == 'true' ? true : false,
+              });}}, 200);});}});
+    eval("");
+    {% when 'collection' %}
+    analyzify.CollectionPageHandle();
+    eval("");
+    {% when 'search' %}
+    analyzify.SearchPageHandle();
+    {% when 'cart' %}
+    analyzify.cartPageHandle();
+    {% unless cart.empty? %}
+      window.analyzify.cartItems = {{ cart | json }}.items;
+      eval("");
+    {% endunless %}
+    {% endcase %}
+}}
+analyzify.Initialize();
+analyzify.loadScript(function() {analyzify.AppStart();});
+</script>
+<!-- END app snippet -->
+
+
+<!-- END app app block -->

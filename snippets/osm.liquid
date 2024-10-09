@@ -1,0 +1,58 @@
+<script type="lazyload_int" data-src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"></script>
+<link rel="stylesheet" data-href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css">
+<style>
+.ol-marker {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid white;
+}  
+</style>
+<script type="lazyload_int">
+    //<![CDATA[
+    var map;
+    var lon = {{ product.metafields.tee.longitude }};
+    var lat = {{ product.metafields.tee.latitude }};
+    var zoom = 9;   
+    function drawmap() {                
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()                    
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([lon, lat]),
+                zoom: zoom
+            })
+        });
+
+        var marker = new ol.Overlay({
+            position: ol.proj.fromLonLat([lon, lat]),
+            positioning: 'center-center',
+            element: document.createElement('div'),
+            stopEvent: false
+        });
+        marker.getElement().className = 'ol-marker';
+        map.addOverlay(marker);
+    }
+
+    setTimeout(function() {
+        drawmap();
+    }, 3000);
+    //]]>
+</script>
+<div id="content">
+    <br>
+    <h3>Herkunft: {{ product.metafields.tee.herkunftsland }}</h3>
+</div>
+<div class="tee-map">
+    <div id="map"></div>
+    <div id="osm">© <a href="https://www.openstreetmap.org">OpenStreetMap</a>
+     und <a href="https://www.openstreetmap.org/copyright">Mitwirkende</a>,
+     <a href="https://creativecommons.org/licenses/by-sa/2.0/deed.de">CC-BY-SA</a>
+    </div>
+</div>
+

@@ -1,0 +1,266 @@
+<style class="critical2">    
+    .caption-content>:only-child {
+        margin-bottom: 0
+    }    
+    .mobile-menu-container[data-animation-state=open] {
+        opacity: 1
+    }          
+    .cart__remove-btn .remove-icon::before {
+        font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif !important;
+        font-size: 25px;
+        line-height: 1em;
+        display: block;
+        content: "×"
+    }
+    @media only screen and (max-width:798px) { 
+        body:not(.mobile_nav-fixed--true):not(.promo-banner--show) .section-wrapper {
+            display: block;
+            margin-top: 70px
+        }
+        body:not(.mobile_nav-fixed--true) .section-wrapper {
+            display: block;
+            margin-top: 70px
+        }
+        body:not(.mobile_nav-fixed--true):not(.promo-banner--show) .promo-banner {
+            min-height: 30px;
+            transition: linear;
+            height: auto;
+            min-height: 30px;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+        }
+        body:not(.mobile_nav-fixed--true) .promo-banner {
+            min-height: 30px;
+            transition: linear;
+            height: auto;
+            min-height: 30px;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+        }
+        .mobile_nav-fixed--true .section-wrapper {
+            display: block;
+            margin-top: 70px
+        }
+    }    
+</style>
+<style class="critical3">      
+    #header .top-bar {
+        min-height: 40px
+    }
+</style>
+<style class="cls_css">
+    @media only screen and (max-width:798px) {        
+        .content-wrapper .sidebar.toggle-all--false .sidebar-block.sidebar-block--first .toggle_list {
+            display: none
+        }
+    }
+</style>
+<style>
+    .footer .footer-menu-wrap h3 {
+        margin: 0;
+        padding: 0 0 5px 0;
+        color: #dedede;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    .footer .footer-menu-wrap h3 > span {
+        display: none;
+    }
+    .collection .product-details center {
+        height: 16px !important;
+    }    
+    html:not(.jsload) .faqAccordion dt > button::after {
+        content: "+" !important;
+    }
+    .price-ui-badge__sticker {
+        background-color: #c7a55d;
+        font-family: "Carter Sans", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 8px 12px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+    }
+    {% if canonical_url contains '/japanische-teekanne-olivgruen' %}
+        .price-ui-badge__sticker {
+            background-color: #363636 !important;
+        }
+    {% endif %}
+    @media(max-width:767px){
+        .product .tee-map .olMapViewport {
+            width: 316px !important;
+        }
+        html:not(.w3_start) body.template-index .one-whole .is-hidden-desktop-only .image-element__wrap {
+            max-height: 155.33px;
+        }
+        /* html:not(.w3_start) .template-product .product-gallery__thumbnails .image-element__wrap img {
+            opacity:0;
+        } */
+    }
+    @media(max-width:575px){
+        .product_gallery.js-product-gallery.multi-image:not(.flickity-enabled) > div:nth-child(n+2) {
+            display: none;
+        }
+        .product_gallery_nav.product-gallery__thumbnails {
+            min-height: 90px;
+        }
+    }    
+    .product_gallery {
+        opacity: 1 !important;
+    }    
+    @media (max-width:767px){
+        html:not(.w3_start) .template-index .shopify-section--image-with-text .is-width-standard .image-element__wrap img{
+            opacity:0;
+        }
+        .product_gallery_nav:not(.flickity-enabled) {
+            display: flex;
+        }
+        .product_gallery_nav:not(.flickity-enabled) .gallery-cell:nth-child(n+5) {
+            display: none;
+        }
+        .shopify-policy__container:not(.five-eighths) {
+            padding-top: 20px;
+        }
+        .shopify-policy__container:not(.five-eighths) .shopify-policy__body {
+            width: 330px;
+        }
+        .section-wrapper >:not(.shopify-policy-template){
+            padding-bottom: 15px;
+        } 
+    }
+    @media only screen and (max-width: 798px) and (max-width: 798px) {
+        .equal-columns--outside-trim .medium-down--one-half:nth-of-type(2n), .equal-columns--outside-trim .medium-down--eight:nth-of-type(2n), .equal-columns--outside-trim .medium-down--one-third:nth-of-type(3n), .equal-columns--outside-trim .medium-down--one-fourth:nth-of-type(4n), .equal-columns--outside-trim .medium-down--four:nth-of-type(4n), .equal-columns--outside-trim .medium-down--one-fifth:nth-of-type(5n), .equal-columns--outside-trim .medium-down--one-sixth:nth-of-type(6n), .equal-columns--outside-trim .medium-down--one-seventh:nth-of-type(7n), .equal-columns--outside-trim .medium-down--two:nth-of-type(8n) {
+            margin-right: 0;
+        }
+    }
+    @media (min-width:1200px){
+        .product_gallery:not(.flickity-enabled) .gallery-cell:nth-child(n+2) {
+            display: none;
+        }
+        .product_gallery_nav:not(.flickity-enabled) {
+            display: flex;
+            align-items: self-start;
+            overflow: hidden;
+        }
+        .product_gallery_nav:not(.flickity-enabled) .gallery-cell {
+            min-width: 132.8px;
+        }
+        .section-wrapper:not(:has(section.section)) .shopify-policy__container {
+            max-width: 730px;
+            padding: 0px;
+            padding-top: 20px;
+        }    
+        .section-wrapper:not(:has(section.section)) {
+            margin-left: -10px !important;
+        }
+        html:not(.jsload) .product-block .modal_price {
+            min-height: 61.19px;
+        }
+    }
+    html:not(.jsload) div#etrusted-product_star {
+        height:28.39px
+    }
+    .price-ui--loading {
+        opacity: 1 !important;
+    }
+    .template-product  .price-ui:not(:has(.unit-pricing )) span.price {
+        margin-bottom:25.59px
+    }
+    html:not(.jsload) .template-product .product_section .product_form .select.default_select {
+        display: none;
+    }
+    html:not(.jsload) .template-product .product_section .product_form {
+        opacity: 1;
+    }
+    html:not(.jsload) .template-collection .shopify-section--custom-liquid .container .one-whole.column etrusted-widget {
+        display:block;
+        height: 169.19px;
+    }    
+    html:not(.jsload) .product-list .product-info__caption etrusted-widget {
+        height: 28.39px;
+        display: block;
+    }
+    {% unless canonical_url contains '/teaclub-story' %}
+        @media only screen and (min-width: 799px) {
+            .payment_methods {
+                float: right;
+                text-align: right;
+            }
+        }
+    {% endunless %}
+    .section-wrapper .under-menu:first-child .full-width--false {
+        margin-top: 30px !important;
+    }
+    html:not(.w3_user) .product-list.product-list--collection .one-third.column.thumbnail:nth-child(n+9) img{
+      opacity: 0;
+    }
+</style>
+{% if template contains "product" %}
+    <link rel="preload" href="https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkWVAewA.woff2" as="font" type="font/woff2" crossorigin>    	
+    <style>
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: italic;
+            font-weight: 400;
+            font-stretch: 100%;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/opensans/v35/memQYaGs126MiZpBA-UFUIcVXSCEkx2cmqvXlWq8tWZ0Pw86hd0Rk8ZkWVAewA.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>   	
+{% endif %}
+{% comment %}
+<style class="critical2">        
+    .promo-banner .promo-banner__close::before {
+        font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif !important;
+        font-size: 20px;
+        line-height: 30px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 35px;
+        content: "×";
+        text-align: center
+    }
+    @media only screen and (max-width:798px) {
+        .mobile_nav-fixed--true.promo-banner--show .section-wrapper {
+            display: block;
+            margin-top: 70px
+        }        
+    }
+</style>
+<style class="critical3">
+    .promo-banner {
+        transition: linear;
+        height: auto;
+        min-height: 30px;
+        line-height: 1.1;
+        display: flex;
+        align-items: center
+    }        
+</style>
+<style class="cls_css">
+    @media only screen and (max-width:798px) {
+        body:not(.mobile_nav-fixed--true.promo-banner--show) .section-wrapper {
+            display: block;
+            margin-top: 70px
+        }        
+    }
+</style>
+<style>
+html:not(.jsload) .promo-banner {
+    transition: all 0s linear !important;
+    height: auto !important;
+    min-height: 30px;
+    line-height: 1.1 !important;
+    display: flex !important;
+    align-items: center;
+}
+</style>
+{% endcomment %}
