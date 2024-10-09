@@ -1,36 +1,31 @@
-{% comment %} Advanced {% endcomment %}
-{% assign css_class = section.settings.css_class %}
-{% assign custom_css = section.settings.custom_css %}
+{% liquid
+  assign heading = section.settings.title
+  # Is the color set to transparent?
+  assign section_background_alpha = settings.shoppable_image_background | default: 'rgba(0,0,0,0)' | color_extract: 'alpha'
 
-{% comment %} Section specific CSS {% endcomment %}
+  if section_background_alpha != 0
+    assign section_background_color = settings.shoppable_image_background
+  else
+    assign section_background_color = settings.shop_bg_color
+  endif
+%}
+
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
-    css: custom_css,
-    id: section.id
+    css: section.settings.custom_css,
+    id: section.id,
   %}
 {% endstyle %}
 
-{% comment %}
-  If this section is the first section in the editor, it will only show up under the menu if the heading is blank.
-{% endcomment %}
-
-{% assign heading = section.settings.title %}
-
-{% comment %} Is the color set to transparent? {% endcomment %}
-{% assign section_background_alpha = settings.shoppable_image_background | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
-
-{% if section_background_alpha != 0 %}
-  {% assign section_background_color = settings.shoppable_image_background %}
-{% else %}
-  {% assign section_background_color = settings.shop_bg_color %}
-{% endif %}
-
 <div
-  class="section-with-heading-wrapper {{ css_class }}"
-  style="
-    --shoppable-image-background-color: {{ section_background_color }};
+  class="
+    section-with-heading-wrapper
+    {{ section.settings.css_class }}
   "
+  style="--shoppable-image-background-color: {{ section_background_color }};"
 >
   {% if heading != blank %}
     <section class="section">
@@ -82,7 +77,10 @@
         >
           {% for block in section.blocks %}
             {% comment %} Is the color set to transparent? {% endcomment %}
-            {% assign hotspot_alpha = block.settings.hotspot_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
+            {% assign hotspot_alpha = block.settings.hotspot_color
+              | default: 'rgba(0,0,0,0)'
+              | color_extract: 'alpha'
+            %}
             {% assign cta_bg_alpha = block.settings.cta_bg_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
 
             <div
@@ -114,15 +112,18 @@
                 data-shoppable-image
               >
                 {% if block.settings.image %}
-                  {%
-                    render 'image-element',
+                  {% render 'image-element',
                     image: block.settings.image,
                     alt: block.settings.image.alt,
                     focal_point: block.settings.image.presentation.focal_point,
                   %}
                 {% else %}
                   {% capture i %}{% cycle "1", "2" %}{% endcapture %}
-                  {{ 'lifestyle-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--shoppable-image' }}
+                  {{
+                    'lifestyle-'
+                    | append: i
+                    | placeholder_svg_tag: 'placeholder-svg placeholder-svg--shoppable-image'
+                  }}
                 {% endif %}
 
                 {% for i in (1..4) %}
@@ -136,7 +137,7 @@
                   {% assign y_axis = block.settings[yAxisName] %}
                   {% assign button_label = block.settings[buttonLabelName] %}
 
-                  {% if product == nil %}
+                  {% if product == null %}
                     {% assign onboarding = true %}
                   {% else %}
                     {% assign onboarding = false %}
@@ -202,17 +203,26 @@
 
                     <div class="hotspot">
                       <div class="hotspot__inner-circle"></div>
-                      <div class="hotspot__content-wrapper hotspot__content-wrapper--{{ block.id }}--{{ i }}" data-content-wrapper>
+                      <div
+                        class="
+                          hotspot__content-wrapper
+                          hotspot__content-wrapper--{{ block.id }}--{{ i }}
+                        "
+                        data-content-wrapper
+                      >
                         <div class="hotspot__content" data-content>
                           {% unless onboarding %}
                             <a class="hotspot__content-overlay-link" href="{{ product.url }}"></a>
                           {% endunless %}
                           <div class="hotspot__product-image">
                             {% if onboarding %}
-                              {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
+                              {{
+                                'product-'
+                                | append: i
+                                | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product'
+                              }}
                             {% else %}
-                              {%
-                                render 'image-element',
+                              {% render 'image-element',
                                 image: product.featured_media,
                                 alt: product.featured_media.alt,
                                 object_fit: settings.align_height,
@@ -249,7 +259,9 @@
                                 {% unless product.available == false and settings.display_price == false %}
                                   <span class="current_price">
                                     {% if product.price_varies %}
-                                      <small class="from"><em>{{ 'products.general.from' | t }}</em></small>
+                                      <small class="from">
+                                        <em>{{ 'products.general.from' | t }}</em>
+                                      </small>
                                     {% endif %}
                                     {% if product.price_min > 0 %}
                                       <span class="money">{% render 'price-element', price: product.price_min %}</span>
@@ -257,13 +269,23 @@
                                       {% if settings.free_price_text != blank %}
                                         <span class="free">{{ settings.free_price_text }}</span>
                                       {% else %}
-                                        <span class="money">{% render 'price-element', price: product.price_min %}</span>
+                                        <span class="money">
+                                          {%
+                                            render 'price-element',
+                                            price: product.price_min,
+                                          %}
+                                        </span>
                                       {% endif %}
                                     {% endif %}
                                   </span>
                                   <span class="was_price">
                                     {% if product.price < product.compare_at_price %}
-                                      <span class="money">{% render 'price-element', price: product.compare_at_price %}</span>
+                                      <span class="money">
+                                        {%
+                                          render 'price-element',
+                                          price: product.compare_at_price,
+                                        %}
+                                      </span>
                                     {% endif %}
                                   </span>
                                 {% endunless %}
@@ -279,13 +301,15 @@
                           <div class="hotspot__product-rating">
                             {% if settings.show_star_ratings and product.metafields.reviews.rating.value != blank %}
                               <div class="product-rating">
-                                {%
-                                  render 'rating-stars',
+                                {% render 'rating-stars',
                                   value: product.metafields.reviews.rating.value.rating,
-                                  scale_max: product.metafields.reviews.rating.value.scale_max,
+                                  scale_max: product.metafields.reviews.rating.value.scale_max
                                 %}
                                 <p class="rating__text">
-                                  <span aria-hidden="true">{{ product.metafields.reviews.rating.value }} / {{ product.metafields.reviews.rating.value.scale_max }}</span>
+                                  <span aria-hidden="true">
+                                    {{- product.metafields.reviews.rating.value }} /
+                                    {{ product.metafields.reviews.rating.value.scale_max -}}
+                                  </span>
                                 </p>
                               </div>
                             {% endif %}
@@ -295,11 +319,10 @@
                             <div class="hotspot__content--active-wrapper is-hidden-mobile-only">
                               <div class="hotspot__content--active">
                                 {% if section.settings.quick_view %}
-                                  {%
-                                    render 'quick-shop-button',
+                                  {% render 'quick-shop-button',
                                     product: product,
                                     label: button_label,
-                                    type: 'anchor-tag',
+                                    type: 'anchor-tag'
                                   %}
                                 {% else %}
                                   <a
@@ -338,7 +361,7 @@
                     {% assign imageName = 'image_alignment_' | append: i %}
                     {% assign imageAlignment = block.settings[imageName] %}
 
-                    {% if product == nil %}
+                    {% if product == null %}
                       {% assign onboarding = true %}
                     {% else %}
                       {% assign onboarding = false %}
@@ -356,55 +379,58 @@
                         data-bottom-bar-thumbnail
                         data-interactive-element
                       >
-                      <style>
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-left img {
-                          object-position: left top;
-                        }
+                        <style>
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-left img {
+                            object-position: left top;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-right img {
-                          object-position: right top;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-right img {
+                            object-position: right top;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-center img {
-                          object-position: center top;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--top-center img {
+                            object-position: center top;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--center-left img {
-                          object-position: left center;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--center-left img {
+                            object-position: left center;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--center-right img {
-                          object-position: right center;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--center-right img {
+                            object-position: right center;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-left img {
-                          object-position: left bottom;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-left img {
+                            object-position: left bottom;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-right img {
-                          object-position: right bottom;
-                        }
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-right img {
+                            object-position: right bottom;
+                          }
 
-                        .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-center img {
-                          object-position: center bottom;
-                        }
-                      </style>
+                          .shoppable-image__bottom-bar__product-thumbnail--{{ block.id }}--{{ i }}.shoppable-image__bottom-bar__image-alignment--bottom-center img {
+                            object-position: center bottom;
+                          }
+                        </style>
                         <div class="shoppable-image__bottom-bar__product-thumbnail-overlay"></div>
                         {% if product.featured_media %}
-                        <div class="image__container">
-                          {%
-                            render 'image-element',
-                            image: product.featured_media,
-                            alt: product.featured_media.alt,
-                          %}
-                        </div>
+                          <div class="image__container">
+                            {%
+                              render 'image-element',
+                              image: product.featured_media,
+                              alt: product.featured_media.alt,
+                            %}
+                          </div>
                         {% else %}
                           {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
                         {% endif %}
                       </div>
                     {% endif %}
                   {% endfor %}
-                  {% if section.settings.cta and block.settings.call_to_action != blank or block.settings.button_label != blank %}
+                  {% if section.settings.cta
+                    and block.settings.call_to_action != blank
+                    or block.settings.button_label != blank
+                  %}
                     <div
                       class="
                         shoppable-image__bottom-bar__call-to-action
@@ -428,11 +454,10 @@
                           </div>
                         {% endif %}
 
-                        {%
-                          render 'banner-buttons',
+                        {% render 'banner-buttons',
                           button1_text: block.settings.button_label,
                           button1_style: block.settings.button_style,
-                          button1_link: block.settings.button_link,
+                          button1_link: block.settings.button_link
                         %}
                       </div>
                     </div>
@@ -566,6 +591,30 @@
         }
       ],
       "default": "natural"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

@@ -7,13 +7,8 @@
 
 {% assign mobile_text_alpha = section.settings.mobile_text_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
 
-{% comment %} Section specific CSS {% endcomment %}
-<style>
-  {%
-    render 'css-loop',
-    css: section.settings.custom_css,
-    id: section.id
-  %}
+{% style %}
+  {% render 'section-space' %}
 
   {% if section.settings.mobile_text_below_image and mobile_text_alpha != 0 %}
     @media only screen and (max-width: 480px) {
@@ -28,7 +23,13 @@
       }
     }
   {% endif %}
-</style>
+
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id,
+  %}
+{% endstyle %}
 
 {% if section.blocks.size > 0 %}
   <section
@@ -221,6 +222,30 @@
       "id": "mobile_text_color",
       "label": "Text below image",
       "info": "Set this to “None” to use the “Regular text” color."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

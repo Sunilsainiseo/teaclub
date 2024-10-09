@@ -5,33 +5,13 @@
 >
 </script>
 
-{% if product.metafields.custom.product_video_url %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "VideoObject",
-  "name": "{{ product.metafields.custom.product_video_headline }}",
-  "description": "{{ product.metafields.custom.product_video_description }}",
-  "thumbnailUrl": "{{ product.metafields.custom.product_video_thumbnail }}",
-  "uploadDate": "{{ product.metafields.custom.product_video_uploaddate }}",
-  "duration": "{{ product.metafields.custom.product_video_duration }}",
-  "embedUrl": "{{ product.metafields.custom.product_video_url }}",
-  "headline": "{{ product.metafields.custom.product_video_headline }}",
-  "keywords": "{{ product.metafields.my_product.keywords }}",
-  "transcript": "{{ product.metafields.custom.product_video_transcript }}"
-}
-</script>
-{% endif %}
-  
-{% assign object_selector = '#shopify-section-' | append: section.id %}
-{% assign mobile_text_alpha = section.settings.mobile_text_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
-
-<style>
-  {%
-    render 'css-loop',
-    css: section.settings.custom_css,
-    id: section.id
-  %}
+{% liquid
+  assign id = section.id
+  assign object_selector = '#shopify-section-' | append: id
+  assign mobile_text_alpha = section.settings.mobile_text_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha'
+%}
+{% style %}
+  {% render 'section-space' %}
 
   {% if section.settings.mobile_text_below_image and mobile_text_alpha != 0 %}
     @media only screen and (max-width: 480px) {
@@ -42,7 +22,13 @@
       }
     }
   {% endif %}
-</style>
+
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: id,
+  %}
+{% endstyle %}
 
 {% if product.metafields.custom.product_video_url %}
   
@@ -67,7 +53,7 @@
             caption-background-{{ section.settings.caption_content_background }}
             caption--below-{{ section.settings.mobile_text_below_image }}
           "
-          id="video-{{ section.id }}"
+          id="video-{{ id }}"
           data-autoplay="{{ section.settings.autoplay }}"
           data-autoloop="{{ section.settings.autoloop }}"
           data-mute-video="{{ section.settings.mute_video }}"
@@ -116,7 +102,7 @@
               {% if section.settings.iframe_video.type == 'vimeo' %}
                 <div
                   class="plyr__video-embed"
-                  id="video-{{ section.id }}"
+                  id="video-{{ id }}"
                   data-video-element
                   data-external-video
                 >
@@ -125,7 +111,7 @@
               {% elsif section.settings.iframe_video.type == 'youtube' %}
                 <div
                   class="plyr__video-embed"
-                  id="video-{{ section.id }}"
+                  id="video-{{ id }}"
                   data-video-element
                   data-external-video
                 >
@@ -135,7 +121,7 @@
               {% comment %} Checks there is an HTML5 video {% endcomment %}
             {% elsif section.settings.html5_video != blank %}
               <video
-                class="video-{{ section.id }}"
+                class="video-{{ id }}"
                 data-video-element
                 data-html5-video
               >
@@ -460,6 +446,30 @@
       "id": "mobile_text_color",
       "label": "Text below image",
       "info": "Set this to “None” to use the “Regular text” color."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

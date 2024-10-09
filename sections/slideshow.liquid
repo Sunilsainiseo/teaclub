@@ -5,15 +5,14 @@
 >
 </script>
 
-{% assign mobile_text_alpha = section.settings.mobile_text_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha' %}
-{% assign object_selector = '#shopify-section-' | append: section.id %}
+{% liquid
+  assign id = section.id
+  assign mobile_text_alpha = section.settings.mobile_text_color | default: 'rgba(0,0,0,0)' | color_extract: 'alpha'
+  assign object_selector = '#shopify-section-' | append: id
+%}
 
-<style>
-  {%
-    render 'css-loop',
-    css: section.settings.custom_css,
-    id: section.id
-  %}
+{% style %}
+  {% render 'section-space' %}
 
   {% if section.settings.mobile_text_below_image and mobile_text_alpha != 0 %}
     @media only screen and (max-width: 480px) {
@@ -24,7 +23,13 @@
       }
     }
   {% endif %}
-</style>
+
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: id,
+  %}
+{% endstyle %}
 
 {% if section.blocks.size > 0 %}
   <section
@@ -53,8 +58,8 @@
             transparentBackground--{{ settings.slideshow_button_style }}
             full-width--{{ section.settings.wide_display }}
           "
-          id="homepage_slider-{{ section.id }}"
-          data-slider-id="homepage_slider-{{ section.id }}"
+          id="homepage_slider-{{ id }}"
+          data-slider-id="homepage_slider-{{ id }}"
           data-slideshow-speed="{{ section.settings.slideshow_speed }}"
           data-slideshow-text-animation="{{ section.settings.slideshow_text_animation }}"
           data-adaptive-height="{{ section.settings.activate_adaptiveHeight }}"
@@ -258,6 +263,30 @@
       "id": "mobile_text_color",
       "label": "Text below image",
       "info": "Set this to “None” to use the “Regular text” color."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

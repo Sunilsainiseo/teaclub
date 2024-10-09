@@ -6,6 +6,8 @@
 </script>
 
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
     css: section.settings.custom_css,
@@ -88,6 +90,30 @@
           "label": "Grid"
         }
       ]
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

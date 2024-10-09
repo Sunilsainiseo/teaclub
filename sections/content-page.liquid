@@ -8,10 +8,12 @@
 {% assign content_page = pages[section.settings.content_page] %}
 
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
     css: section.settings.custom_css,
-    id: section.id
+    id: section.id,
   %}
 {% endstyle %}
 
@@ -43,6 +45,30 @@
       "type": "page",
       "id": "content_page",
       "label": "Content page"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

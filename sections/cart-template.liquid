@@ -4,6 +4,10 @@
   data-section-id="{{ section.id }}"
 >
 </script>
+
+{% style %}
+  {% render 'section-space' %}
+{% endstyle %}
 {% liquid
   assign continue_url = routes.all_products_collection_url
   if section.settings.continue_shopping_url != blank
@@ -411,6 +415,30 @@
       "id": "continue_shopping_url",
       "label": "Continue shopping link",
       "info": "Where to direct customers after clicking \"Continue shopping\""
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     }
   ]
 }

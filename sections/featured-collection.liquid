@@ -19,12 +19,13 @@
   endif
 %}
 
-{% comment %} Section specific CSS {% endcomment %}
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
     css: section.settings.custom_css,
-    id: section.id
+    id: section.id,
   %}
 {% endstyle %}
 
@@ -116,7 +117,6 @@
         <div class="product-list product-list--collection">
           <div class="container">
             {% for i in (1..section.settings.products_limit) %}
-              {% comment %}{% assign collection_group = products | map: 'section.id' %}{% endcomment %}
               {%- assign collection_group_thumb = collection_group | append : 'thumb' -%}
               {%- assign collection_group_mobile = collection_group | append : 'mobile' -%}
 
@@ -136,6 +136,33 @@
       </section>
     {% endif %}
   {% endif %}
+
+  {% if section.settings.collection_view_all %}
+    <div class="section">
+      <div class="container">
+        <div
+          class="
+            one-whole
+            column
+            center
+          "
+        >
+          <a
+            class="
+              featured-collection__view-all-button
+              global-button
+              global-button--text
+            "
+            {% if collection != blank %}
+              href="{{ collection.url }}"
+            {% endif %}
+          >
+            {{- 'collections.general.view_all' | t -}}
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
@@ -154,6 +181,12 @@
       "id": "collection_description",
       "label": "Show description",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_view_all",
+      "label": "Enable 'View all' button",
+      "default": false
     },
     {
       "type": "collection",
@@ -197,6 +230,30 @@
       "max": 50,
       "step": 1,
       "default": 9
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

@@ -5,25 +5,9 @@
 >
 </script>
 
-{%comment%}S24
-<script
-type="lazyload2" data-src=" https://tracking.s24.com/js/conversion-tracking.js "></script>
-<script type="lazyload2">
-document.addEventListener('DOMContentLoaded2', function initS24() {
-window.s24ConversionTracking.init('s24clid');
-}, false);
-</script>
-{%endcomment%}
-<style>
-  @media (max-width: 767px){
-  .page-header.desktopview {
-    display: none;
-}}
-  @media (min-width: 768px){
-  .page-header.mobileview {
-    display: none;
-}}
-</style>
+{% style %}
+  {% render 'section-space' %}
+{% endstyle %}
 <div class="section">
       {% if product.metafields.tee.header_image %}
   	<div class="page-header desktopview" style="background-image:url({{product.metafields.tee.header_image}});">
@@ -86,7 +70,8 @@ window.s24ConversionTracking.init('s24clid');
         set_product_height: section.settings.set_product_height,
         product_height: section.settings.product_height,
         video_looping: section.settings.video_looping,
-        show_dynamic_checkout_button: settings.show_dynamic_checkout_button
+        show_dynamic_checkout_button: settings.show_dynamic_checkout_button,
+        show_only_selected_variant_image: section.settings.show_only_selected_variant_image,
       %}
     </section>
   </div>
@@ -224,6 +209,36 @@ window.s24ConversionTracking.init('s24clid');
       "id": "enable_thumbnail_slider",
       "label": "Enable thumbnail slider",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_only_selected_variant_image",
+      "label": "Show only selected variant image",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     }
   ],
   "blocks": [

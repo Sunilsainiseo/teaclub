@@ -1,26 +1,5 @@
 /******/ (() => { // webpackBootstrap
-(() => {
-(function (n, v) {
-    // eslint-disable-next-line max-len
-    if (window.Shopify && window.Shopify.theme && navigator && navigator.sendBeacon && window.Shopify.designMode) {
-      if (sessionStorage.getItem('oots_beacon')) return;
-
-      navigator.sendBeacon('https://app.outofthesandbox.com/beacon', new URLSearchParams({
-        shop_domain: window.Shopify.shop,
-        shop_id: window.Store.id,
-        theme_name: n,
-        theme_version: v,
-        theme_store_id: window.Shopify.theme.theme_store_id,
-        theme_id: window.Shopify.theme.id,
-        theme_role: window.Shopify.theme.role,
-      }));
-
-      sessionStorage.setItem('oots_beacon', '');
-    }
-  }('turbo','9.4.0'))
-})();
-
-(() => {
+/* eslint-disable */
 rimg.shopify.init('[data-rimg="lazy"]', {
   round: 1
 });
@@ -286,6 +265,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (window.PXUTheme.theme_settings.newsletter_popup) {
     window.newsletter_popup.init();
   }
+  if (window.PXUTheme.theme_settings.enable_back_to_top_button) {
+    window.back_to_top_button.init();
+  }
   if (window.location.pathname.indexOf('/comments') !== -1) {
     $('html,body').animate({
       scrollTop: $('#new-comment').offset().top - 140
@@ -413,10 +395,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.enableLoadMoreProducts();
   }
   if (window.PXUTheme.theme_settings.pagination_type === 'load_more_button') {
-    window.enableLoadMoreButton('.product-list');
+    window.enableLoadMoreButton('[data-product-list]');
   }
   if (window.PXUTheme.theme_settings.pagination_type === 'infinite_scroll') {
-    window.enableInfiniteScroll('.product-list');
+    window.enableInfiniteScroll('[data-product-list]');
   }
 
   /*= ===========================================================================
@@ -571,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function () {
           dataType: 'json',
           async: false,
           cache: false,
-          url: `/products/${item.handle}.js`,
+          url: `${window.Shopify.routes.root}products/${item.handle}.js`,
           success(data) {
             let productData = data;
             // If item has more than one variant, need to make sure we are pulling data from the correct variant
@@ -610,8 +592,8 @@ document.addEventListener('DOMContentLoaded', function () {
           const itemPrice = `${window.Shopify.formatMoney(item.final_price, $('body').data('money-format'))} </span><span class="money was_price">${window.Shopify.formatMoney(item.price, $('body').data('money-format'))}</span>`;
           cartItemsHTML += `<span class="money sale">${itemPrice}</strong>`;
         } else {
-          const itemPrice = window.Shopify.formatMoney(item.price, $('body').data('money-format'));
-          if (item.price > 0) {
+          const itemPrice = window.Shopify.formatMoney(item.final_price, $('body').data('money-format'));
+          if (item.final_price > 0) {
             cartItemsHTML += `<span class="money">${itemPrice}</span></strong>`;
           } else {
             cartItemsHTML += `<span>${window.PXUTheme.translation.cart_free_text}</span></strong>`;
@@ -874,7 +856,5 @@ window.is_touch_device = function is_touch_device() {
 
 // Differentiate between mobile and touch screen laptops
 window.touch_device = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-})();
-
 /******/ })()
 ;

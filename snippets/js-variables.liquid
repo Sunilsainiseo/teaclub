@@ -81,6 +81,9 @@ window.PXUTheme.theme_settings.slideshow_arrow_size = {{ settings.slideshow_arro
 {% comment %} Quickshop {% endcomment %}
 window.PXUTheme.theme_settings.quick_shop_enabled = {{ settings.quick_shop_enabled | json }};
 
+{% comment %} Back to top button {% endcomment %}
+window.PXUTheme.theme_settings.enable_back_to_top_button = {{ settings.enable_back_to_top_button | json }};
+
 {% comment %} /* # Translation
 ================================================== */ {% endcomment %}
 window.PXUTheme.translation = {};
@@ -112,6 +115,7 @@ window.PXUTheme.translation.coming_soon_text = "{{ 'collections.general.coming_s
 window.PXUTheme.translation.sold_out_text = "{{ 'products.product.sold_out' | t }}";
 window.PXUTheme.translation.sale_text = "{{ 'collections.general.sale' | t }}";
 window.PXUTheme.translation.savings_text = "{{ 'products.product.savings' | t }}";
+window.PXUTheme.translation.percent_off_text = "{{ 'products.product.percent_off' | t }}";
 window.PXUTheme.translation.from_text = "{{ 'products.general.from' | t }}";
 window.PXUTheme.translation.new_text = "{{ 'collections.general.new' | t }}";
 window.PXUTheme.translation.pre_order_text = "{{ 'collections.general.pre_order' | t }}";
@@ -135,4 +139,7 @@ window.PXUTheme.media_queries.mobile_and_tablet = window.matchMedia( "(max-width
 
 {% endcapture %}
 {%- assign js_variables = js_variables | split: 'Shopify.' -%}
-{%- for variable in js_variables -%}{%- assign variableblock = variable | strip -%}{% if forloop.first %}{{ variableblock }}{% else %}{{ variableblock | prepend: 'Shopify.' }}{% endif %}{%- endfor -%}
+{%- for variable in js_variables -%}
+  {%- assign variableblock = variable | strip -%}
+  {% if forloop.first %}{{ variableblock }}{% else %}{{ variableblock | prepend: 'Shopify.' }}{% endif %}
+{%- endfor -%}

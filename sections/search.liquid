@@ -6,11 +6,7 @@
 </script>
 
 {% style %}
-  {%
-    render 'css-loop',
-    css: section.settings.custom_css,
-    id: section.id,
-  %}
+  {% render 'section-space' %}
 
   #shopify-section-{{ section.id }} .search-section {
     background-position: {{ section.settings.image.presentation.focal_point }};
@@ -21,6 +17,12 @@
       background-position: {{ section.settings.mobile_image.presentation.focal_point }};
     }
   }
+
+  {%
+    render 'css-loop',
+    css: section.settings.custom_css,
+    id: section.id,
+  %}
 {% endstyle %}
 
 <section
@@ -124,6 +126,30 @@
       "id": "mobile_image",
       "label": "Mobile banner image",
       "info": "Display a different image on mobile screens. This only appears when the desktop image is set."
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

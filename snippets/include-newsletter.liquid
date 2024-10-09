@@ -3,33 +3,23 @@
 - Draggable section
 {% endcomment %}
 
-{% comment %}Assign object as block or section{% endcomment %}
-{% if type == 'block' %}
-  {%- assign object = block -%}
-{% else %}
-  {%- assign object = section -%}
-{% endif %}
+{% liquid
+  if type == 'block'
+    assign object = block
+  else
+    assign object = section
+  endif
 
-{%- assign id = object.id -%}
+  assign id = object.id
 
-{% comment %} Content settings {% endcomment %}
-{%- assign newsletter_title = object.settings.newsletter_title -%}
-{%- assign newsletter_text = object.settings.newsletter_text -%}
-{%- assign image = object.settings.image -%}
-{%- assign mobile_image = object.settings.mobile_image -%}
-{% comment %} End content settings {% endcomment %}
+  assign newsletter_title = object.settings.newsletter_title
+  assign newsletter_text = object.settings.newsletter_text
+  assign image = object.settings.image
+  assign mobile_image = object.settings.mobile_image
+%}
 
-{% comment %} Advanced {% endcomment %}
-{%- assign css_class = object.settings.css_class -%}
-{%- assign custom_css = object.settings.custom_css -%}
-
-{% comment %} Section specific CSS {% endcomment %}
 {% style %}
-  {%
-    render 'css-loop',
-    css: custom_css,
-    id: id,
-  %}
+  {% render 'section-space' %}
 
   #shopify-section-{{ id }} .newsletter_section {
     background-position: {{ image.presentation.focal_point }};
@@ -40,9 +30,24 @@
       background-position: {{ mobile_image.presentation.focal_point }};
     }
   }
+
+  {%
+    render 'css-loop',
+    css: object.settings.custom_css,
+    id: id,
+  %}
 {% endstyle %}
 
-<section class="section {{ css_class }} {% if object.settings.wide_display == true %}is-width-wide has-no-side-gutter{% endif %}">
+<section
+  class="
+    section
+    {{ object.settings.css_class }}
+    {% if object.settings.wide_display == true %}
+      is-width-wide
+      has-no-side-gutter
+    {% endif %}
+  "
+>
   <div
     class="
       newsletter_section

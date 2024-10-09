@@ -4,33 +4,31 @@
 - Uses blocks
 {% endcomment %}
 
-{% comment %} Assign object as block or section {% endcomment %}
-{% if type == 'block' %}
-  {%- assign object = block -%}
-{% else %}
-  {%- assign object = section -%}
-{% endif %}
+{% liquid
+  if type == 'block'
+    assign object = block
+  else
+    assign object = section
+  endif
 
-{%- assign id = object.id -%}
+  assign id = object.id
 
-{% comment %} Content settings {% endcomment %}
-{%- assign blocks = object.blocks -%}
-{%- assign contact_image = object.settings.contact_image -%}
-{%- assign contact_heading = object.settings.contact_heading -%}
-{%- assign contact_subheading = object.settings.contact_subheading -%}
-{%- assign contact_content = object.settings.contact_content -%}
-{% comment %} End content settings {% endcomment %}
+  assign blocks = object.blocks
+  assign contact_image = object.settings.contact_image
+  assign contact_heading = object.settings.contact_heading
+  assign contact_subheading = object.settings.contact_subheading
+  assign contact_content = object.settings.contact_content
+  assign css_class = object.settings.css_class
+  assign custom_css = object.settings.custom_css
+%}
 
-{% comment %} Advanced {% endcomment %}
-{%- assign css_class = object.settings.css_class -%}
-{%- assign custom_css = object.settings.custom_css -%}
-
-{% comment %} Section specific CSS {% endcomment %}
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
     css: custom_css,
-    id: id
+    id: id,
   %}
 {% endstyle %}
 

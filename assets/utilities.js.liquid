@@ -10,6 +10,7 @@
 #Sidebar filter on collection pages
 #Misc
 #Quick shop
+#Back to top button
 #Newsletter popup
 #Product Media Controls
 #Plyr setup
@@ -359,9 +360,8 @@ window.recentlyViewed = {
 ================================================== */
 
 var enableLoadMoreProducts = function() {
-  $('body').on(w3elem, '.js-load-more a', function(e) {
-    enableInfiniteScroll('.product-list');
-    e.stopPropagation();
+  $('body').on('click', '.js-load-more a', function(e) {
+    enableInfiniteScroll('[data-product-list]');    e.stopPropagation();
     return false;
   });
 }
@@ -657,11 +657,11 @@ var quickFilter = {
         }
 
         if (window.PXUTheme.theme_settings.pagination_type === 'load_more_button') {
-          window.enableLoadMoreButton('.product-list');
+          window.enableLoadMoreButton('[data-product-list]');
         }
 
         if (window.PXUTheme.theme_settings.pagination_type === 'infinite_scroll') {
-          window.enableInfiniteScroll('.product-list');
+          window.enableInfiniteScroll('[data-product-list]');
         }
       },
       error: function(x, t, m) {
@@ -1423,6 +1423,65 @@ window.quickShop = {
 }
 
 /*============================================================================
+  #Back to top button
+==============================================================================*/
+
+window.back_to_top_button = {
+  init() {
+    this.el = document.querySelector('[data-back-to-top]');
+    this.label = this.el.querySelector('.back-to-top__button-label');
+    this.events = new EventHandler();
+    this.buttonAnimation = window.animations.transition({ el: this.el });
+    this.labelAnimation = window.animations.transition({ el: this.label, state: 'hidden' });
+    this.scrollThreshold = 0.3;
+    this.events.register(this.el, 'click', () => this._scrollToTop());
+    this.events.register(this.el, 'mouseenter', () => this._onHover());
+    this.events.register(this.el, 'mouseleave', () => this._onHoverEnd());
+    this.events.register(window, 'scroll', debounce(() => this._onScroll(), 100, true));
+  },
+  get scrollPosition() {
+    return window.scrollY / (document.body.offsetHeight - window.innerHeight);
+  },
+  _onScroll() {
+    if (window.PXUTheme.media_queries.medium.matches) return;
+
+    if (this.scrollPosition >= this.scrollThreshold) {
+      this.buttonAnimation.animateTo('visible');
+    } else {
+      this.buttonAnimation.animateTo('hidden');
+    }
+  },
+  _onHover() {
+    if (window.PXUTheme.media_queries.mobile_and_tablet.matches) return;
+    this.labelAnimation.animateTo('visible', {
+      onStart: ({ el }) => {
+        // When this function is called, element is `display: block; width: 0;`
+        // but the wrapper's scrollWidth is the width we want to transition to
+        const { scrollWidth } = el;
+
+        // Add 8px to the width to create padding between the text and the chevron
+        // We add this space here because adding padding via CSS causes a 'stepped'
+        // animation effect due to the way browsers calculate visible width
+        const adjustedScrollWidth = parseInt(scrollWidth, 10) + 8;
+
+        el.style.setProperty('--open-width', `${adjustedScrollWidth}px`);
+      },
+    });
+  },
+  _onHoverEnd() {
+    if (window.PXUTheme.media_queries.mobile_and_tablet.matches) return;
+    this.labelAnimation.animateTo('hidden');
+  },
+  _scrollToTop() {
+    document.activeElement.blur();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
+}
+
+/*============================================================================
   #Newsletter Popup
 ==============================================================================*/
 
@@ -1674,22 +1733,3 @@ window.videoFeature = {
     }
   }
 }
-
-window.addEventListener('load', () => {
-    // eslint-disable-next-line max-len
-    if (window.Shopify && window.Shopify.theme && window.PXUTheme && navigator && navigator.sendBeacon && window.Shopify.designMode) {
-      if (sessionStorage.getItem('oots_beacon')) return;
-
-      navigator.sendBeacon('https://app.outofthesandbox.com/beacon', new URLSearchParams({
-        shop_domain: window.Shopify.shop,
-        shop_id: window.Store.id,
-        theme_name: window.PXUTheme.name,
-        theme_version: window.PXUTheme.version,
-        theme_store_id: window.Shopify.theme.theme_store_id,
-        theme_id: window.Shopify.theme.id,
-        theme_role: window.Shopify.theme.role,
-      }));
-
-      sessionStorage.setItem('oots_beacon', '');
-    }
-  });

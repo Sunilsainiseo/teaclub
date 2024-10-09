@@ -5,27 +5,22 @@
 >
 </script>
 
-{%- assign id = section.id -%}
+{% liquid
+  assign blocks = section.blocks
+  assign title = section.settings.title | escape
+%}
 
-{% comment %} Content settings {% endcomment %}
-{%- assign blocks = section.blocks -%}
-{%- assign title = section.settings.title | escape -%}
-{% comment %} End content settings {% endcomment %}
-
-{% comment %} Advanced {% endcomment %}
-{%- assign css_class = section.settings.css_class -%}
-{%- assign custom_css = section.settings.custom_css -%}
-
-{% comment %} Section specific CSS {% endcomment %}
 {% style %}
+  {% render 'section-space' %}
+
   {%
     render 'css-loop',
-    css: custom_css,
-    id: id
+    css: section.settings.custom_css,
+    id: section.id,
   %}
 {% endstyle %}
 
-<section class="section {{ css_class }}">
+<section class="section {{ section.settings.css_class }}">
   <div class="container">
     {% if title != blank %}
       <div class="one-whole column">
@@ -87,6 +82,30 @@
       "id": "title",
       "label": "Heading",
       "default": "Text columns with images"
+    },
+    {
+      "type": "header",
+      "content": "Section spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 0
     },
     {
       "type": "header",

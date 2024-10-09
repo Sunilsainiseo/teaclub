@@ -7,25 +7,14 @@
 
     <div class="info">
       {% if settings.thumbnail_hover_enabled %}
-        {%
-          render 'product-info',
-          product: product,
-          collection_handles: collection_handles,
-        %}
+        {% render 'product-info', product: product, collection_handles: collection_handles %}
       {% endif %}
 
       {% if settings.quick_shop_enabled and settings.quick_shop_style == 'popup' %}
-        {%
-          render 'quick-shop-button',
-          product: product,
-        %}
+        {% render 'quick-shop-button', product: product %}
       {% endif %}
     </div>
   </div>
 {% endif %}
 
-{%
-  render 'price-ui-badges',
-  product: product,
-  collection_handles: collection_handles,
-%}
+{% render 'price-ui-badges', product: product, collection_handles: collection_handles, page_type: 'collection' %}

@@ -1,3 +1,21 @@
+{% liquid
+  assign heading = settings.newsletter_popup_title | escape
+  assign text_color = settings.newsletter_popup_color
+  assign text_color_alpha = text_color | color_extract: 'alpha'
+  assign background_color = settings.newsletter_popup_background_color
+  assign background_color_alpha = background_color | color_extract: 'alpha'
+
+  # Default to Regular text color.
+  if text_color_alpha == 0
+    assign text_color = settings.regular_color
+  endif
+
+  # Default to Shop background color.
+  if background_color_alpha == 0
+    assign background_color = settings.shop_bg_color
+  endif
+%}
+
 {%- capture focal_point_style -%}
   object-fit:cover; object-position:{{ settings.newsletter_bg.presentation.focal_point }};
 {%- endcapture -%}
@@ -17,6 +35,10 @@
       {% else %}
         newsletter-both-names--false
       {% endif %}
+    "
+    style="
+      --newsletter-popup-color-text: {{ text_color }};
+      --newsletter-popup-color-background: {{ background_color }};
     "
   >
     {% if settings.newsletter_bg != blank %}
@@ -41,9 +63,14 @@
     {% endif %}
 
     <div class="newsletter-popup__content">
-      <div class="newsletter-info">
+      <div class="newsletter-popup__info">
         <div class="newsletter-description">
-          <h2>{{ settings.newsletter_popup_title }}</h2>
+          {% if heading != blank %}
+            <h2 class="newsletter-popup__heading">
+              {{- heading -}}
+            </h2>
+          {% endif %}
+
           <div>{{ settings.newsletter_popup_text }}</div>
 
           {% if settings.popup_button1 != blank or settings.popup_button2 != blank %}
